@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ObterCapituloViewModel, VersiculoViewModel } from '../../models/models';
 import { ServicoHttp } from '../../services/http/http.service';
+import { Observable, take } from 'rxjs';
 
 @Component({
   selector: 'app-capitulo',
@@ -17,6 +18,7 @@ export class CapituloComponent
   versiculos?: VersiculoViewModel[]
   btnProximoDesativado: boolean = false
   btnAnteriorDesativado: boolean = false
+  observableVersiculos?: Observable<ObterCapituloViewModel>
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +28,6 @@ export class CapituloComponent
     private el: ElementRef) { }
 
   ngOnInit(): void {
-    console.log("oninit")
     let detalhes = this.route.snapshot.data['detalhes']
     let capitulo = parseInt(this.route.snapshot.params['capitulo'])
     let total = parseInt(this.route.snapshot.params['total'])
@@ -66,6 +67,7 @@ export class CapituloComponent
     this.alterarBtnAtivado(capitulo, total)
 
     this.service.ObterVersiculosPorCapitulo(livro, capitulo)
+      .pipe(take(1))
       .subscribe(dados => {
         this.router.navigate(["livro", livro, capitulo, total], { relativeTo: this.route.parent });
         this.detalhes = dados;
@@ -97,7 +99,7 @@ export class CapituloComponent
 
   scrollAoTopo() {
     this.el.nativeElement.querySelector('#titulo')
-    .scrollIntoView({ behavior: 'smooth' });
-    }
+      .scrollIntoView({ behavior: 'smooth' });
   }
+}
 

@@ -11,12 +11,14 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 })
 export class FavoritosComponent implements OnInit {
   favoritos?: VersiculoViewModel[];
-  constructor(private route: ActivatedRoute, private snack: MatSnackBar, private favoritoService: FavoritosService) { }
+
+  constructor(
+    private route: ActivatedRoute,
+    private snack: MatSnackBar,
+    private favoritoService: FavoritosService) { }
 
   ngOnInit(): void {
     this.favoritos = this.route.snapshot.data['favoritos'];
-
-    console.log(this.favoritos)
 
     if (this.favoritos?.length == 0) this.snack.open('Nenhum favorito até o momento');
   }

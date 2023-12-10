@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImagemService } from '../services/tema/imagem.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
