@@ -20,6 +20,8 @@ export class CapituloComponent
   btnAnteriorDesativado: boolean = false
   observableVersiculos?: Observable<ObterCapituloViewModel>
 
+  grade = true
+
   constructor(
     private route: ActivatedRoute,
     private service: ServicoHttp,
@@ -41,6 +43,8 @@ export class CapituloComponent
     this.detalhes = detalhes
 
     this.mapearVersiculos();
+
+    window.addEventListener("resize", this.alterarGradeMobile);
 
   }
 
@@ -89,7 +93,6 @@ export class CapituloComponent
     });
   }
 
-
   private alterarBtnAtivado(capitulo: number, totalCapitulos: number) {
 
     this.btnProximoDesativado = capitulo == totalCapitulos
@@ -100,6 +103,14 @@ export class CapituloComponent
   scrollAoTopo() {
     this.el.nativeElement.querySelector('#titulo')
       .scrollIntoView({ behavior: 'smooth' });
+  }
+
+  alterarGradeMobile() {
+    this.grade = window.innerWidth <= 768
+  }
+
+  alterarGrade() {
+    this.grade = !this.grade
   }
 }
 

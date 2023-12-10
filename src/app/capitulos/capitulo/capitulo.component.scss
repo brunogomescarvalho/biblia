@@ -5,3 +5,9 @@
 .spacer {
   flex: 1 1 auto;
 }
+
+@media (max-width: 766px) {
+  .botao {
+    display: none;
+  }
+}

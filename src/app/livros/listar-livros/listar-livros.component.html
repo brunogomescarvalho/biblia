@@ -3,18 +3,19 @@
   <p>Exibindo {{(livros$|async)?.length}} livros biblicos</p>
   <mat-divider></mat-divider>
 
-<div class="row">
-  <div class="col">
-    <a class='my-4' href="/dashboard" mat-raised-button color="primary">Voltar</a>
-   </div>
-
-    <div class="col text-end">
-      <a class='my-4 botao' (click)="alterarGrade()" mat-icon-button color="accent"><mat-icon>{{(grade?"table_rows":"grid_on")}}</mat-icon></a>
+  <div class="row">
+    <div class="col">
+      <a class='my-4' href="/dashboard" mat-raised-button color="primary">Voltar</a>
     </div>
 
-</div>
+    <div class="col text-end">
+      <a class='my-4 botao' (click)="alterarGrade()" mat-icon-button
+        color="accent"><mat-icon>{{(grade?"table_rows":"grid_on")}}</mat-icon></a>
+    </div>
 
-  <div *ngIf='grade' >
+  </div>
+
+  <div *ngIf='grade'>
     <div class="row">
       <div *ngFor="let livro of livros$ | async" class="col-lg-4 col-md-6 col-sm-12 mb-4">
         <app-card-livros [livro]="livro" />
@@ -22,13 +23,13 @@
     </div>
   </div>
 
-    <div *ngIf="!grade">
-      <div *ngFor="let livro of livros$ | async">
-         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-          <app-card-livros [livro]="livro" />
-         </div>
+  <div *ngIf="!grade">
+    <div *ngFor="let livro of livros$ | async">
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+        <app-card-livros [livro]="livro" />
       </div>
     </div>
+  </div>
 
 
   <a mat-mini-fab color="primary" href="/dashboard">
