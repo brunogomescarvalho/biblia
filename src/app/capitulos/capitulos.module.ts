@@ -9,6 +9,7 @@ import { CapituloComponent } from './capitulo/capitulo.component';
 import { CapitulosRoutes } from './capitulos.routing';
 import { FormCapituloComponent } from './form-capitulo/form-capitulo.component';
 
+
 @NgModule({
   declarations: [FormCapituloComponent, CapituloComponent],
   imports: [
@@ -20,4 +21,4 @@ import { FormCapituloComponent } from './form-capitulo/form-capitulo.component';
   ],
   providers: [ServicoHttp],
 })
-export class CapitulosModule {}
+export class CapitulosModule { }

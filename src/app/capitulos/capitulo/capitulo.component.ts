@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { ObterCapituloViewModel, VersiculoViewModel } from '../../models/models';
 import { ServicoHttp } from '../../services/http/http.service';
 
@@ -21,7 +22,8 @@ export class CapituloComponent
     private route: ActivatedRoute,
     private service: ServicoHttp,
     private router: Router,
-    private snack: MatSnackBar) { }
+    private snack: MatSnackBar,
+    private el: ElementRef) { }
 
   ngOnInit(): void {
     console.log("oninit")
@@ -68,6 +70,7 @@ export class CapituloComponent
         this.router.navigate(["livro", livro, capitulo, total], { relativeTo: this.route.parent });
         this.detalhes = dados;
         this.mapearVersiculos();
+        this.scrollAoTopo()
       });
   }
 
@@ -90,6 +93,11 @@ export class CapituloComponent
     this.btnProximoDesativado = capitulo == totalCapitulos
 
     this.btnAnteriorDesativado = capitulo == 1
-
   }
-}
+
+  scrollAoTopo() {
+    this.el.nativeElement.querySelector('#titulo')
+    .scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
