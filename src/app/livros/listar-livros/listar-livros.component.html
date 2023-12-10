@@ -1,0 +1,18 @@
+<div class="container ">
+  <h2 class="mt-4">Livros</h2>
+  <p>Exibindo {{(livros$|async)?.length}} livros biblicos</p>
+  <mat-divider></mat-divider>
+  <a class='my-4' href="/dashboard" mat-raised-button color="primary">Voltar</a>
+
+  <div class="row">
+    <div *ngFor="let livro of livros$ | async">
+     <div class="col-lg-3 col-md-3 col-sm-12 mb-4">
+      <app-card-livros [livro]="livro" />
+     </div>
+    </div>
+  </div>
+
+  <a mat-mini-fab color="primary" href="/dashboard">
+    <mat-icon aria-hidden="false" fontIcon="navigate_before"></mat-icon>
+  </a>
+</div>

@@ -1,0 +1,36 @@
+<div class="container ">
+  <h2 class="mt-4">Capítulos</h2>
+  <p>Encontre todos os versículos e detalhes de um capítulo</p>
+  <mat-divider></mat-divider>
+
+  <h4 class="mt-3">Selecione o Livro</h4>
+  <form [formGroup]="form" class="form" (ngSubmit)="Buscar()">
+
+    <mat-form-field class="full-width">
+      <mat-label>Livros</mat-label>
+      <mat-select formControlName="livro">
+        <label class="fs-6  px-3 text-secondary">Nome - Autor</label>
+        <div *ngFor="let livro of livros$ | async">
+          <mat-option [value]="livro">{{livro.name}} - {{livro.author}} </mat-option>
+        </div>
+      </mat-select>
+    </mat-form-field>
+
+    <h4>Selecione o Capítulo</h4>
+    <mat-form-field class="full-width">
+      <mat-select formControlName="capitulo">
+        <div *ngFor="let capitulo of capitulos">
+          <mat-option [value]="capitulo">{{capitulo}}</mat-option>
+        </div>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="mb-2 d-flex gap-2">
+      <button mat-raised-button type="submit" color="primary">Buscar</button>
+      <a href="/dashboard" mat-stroked-button type="button" color="accent">Voltar</a>
+    </div>
+  </form>
+
+  <mat-divider></mat-divider>
+
+</div>

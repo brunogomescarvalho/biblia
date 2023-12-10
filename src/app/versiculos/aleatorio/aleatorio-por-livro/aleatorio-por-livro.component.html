@@ -1,0 +1,68 @@
+<div class="container">
+  <h2 class="mt-4">Versículos Aleatório Por Livro</h2>
+  <p>Abaixo, você pode escolher um livro para receber um versículo aleatório</p>
+  <mat-divider></mat-divider>
+
+  <h4 class="mt-3">Selecione o Livro</h4>
+  <form [formGroup]="form" class="form" (ngSubmit)="buscar()">
+    <mat-form-field class="full-width">
+      <mat-label>Livros</mat-label>
+      <mat-select formControlName="livro">
+        <label class="fs-6  px-3 text-secondary">Nome - Autor</label>
+        <div *ngFor="let livro of livros$ | async">
+        <mat-option [value]="livro">{{ livro.name }} - {{ livro.author }}</mat-option>
+      </div>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="mb-2 d-flex gap-2">
+      <button mat-raised-button type="submit" color="primary">Buscar</button>
+      <a href="/dashboard" mat-stroked-button type="button" color="accent"
+        >Voltar</a
+      >
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="limpar()"
+        color="primary"
+      >
+        Limpar
+      </button>
+    </div>
+  </form>
+
+  <mat-divider></mat-divider>
+
+  <div class="row d-flex" *ngIf="versiculo$ | async as versiculo">
+    <table class="table-sm text-center mt-4">
+      <thead>
+        <tr>
+          <th>Grupo</th>
+          <th>Autor</th>
+          <th>Livro</th>
+          <th>Capitulo</th>
+          <th>Versículo</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>{{ versiculo.book?.group }}</td>
+          <td>{{ versiculo.book?.author }}</td>
+          <td>{{ versiculo.book?.name }}</td>
+          <td>{{ versiculo.chapter }}</td>
+          <td>{{ versiculo.number }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="row mt-4">
+      <div class="col-lg-6">
+        <app-card-versiculos
+          [versiculo]="versiculo"
+          [numerar]="false"
+        ></app-card-versiculos>
+      </div>
+    </div>
+  </div>
+</div>

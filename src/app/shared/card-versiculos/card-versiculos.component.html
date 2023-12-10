@@ -1,0 +1,19 @@
+<mat-card appCardHover>
+  <mat-card-content>
+    <div class="row d-flex m-0">
+      <div class="col-10">
+        <span class="fs-6 m-0"> <span *ngIf="numerar">
+            {{versiculo.number}} -  </span> {{versiculo.text}}</span>
+      </div>
+      <div class="col-1">
+
+        <button [matMenuTriggerFor]="menu" mat-icon-button>
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="p-0">
+          <button mat-menu-item (click)="favoritar(versiculo)">Favorito</button>
+        </mat-menu>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

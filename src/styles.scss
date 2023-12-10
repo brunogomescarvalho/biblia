@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+@use '@angular/material' as mat;
+
+$my-primary-dark : mat.define-palette(mat.$blue-palette, 700);
+$my-accent-dark : mat.define-palette(mat.$amber-palette, 600);
+$my-warn-dark : mat.define-palette(mat.$red-palette);
+
+$dark-theme: mat.define-dark-theme((color: (primary: $my-primary-dark,
+        accent: $my-accent-dark,
+        warn: $my-warn-dark,
+      ),
+      typography: mat.define-typography-config(),
+      density: 0,
+    ));
+
+
+
+
+
+$my-primary-light : mat.define-palette(mat.$teal-palette, 700);
+$my-accent-light : mat.define-palette(mat.$deep-purple-palette, 800);
+$my-warn-light : mat.define-palette(mat.$red-palette);
+
+$light-theme: mat.define-light-theme((color: (primary: $my-primary-light,
+        accent: $my-accent-light,
+        warn: $my-warn-light,
+      ),
+      typography: mat.define-typography-config(),
+      density: 0,
+    ));
+
+
+.light-theme {
+  @include mat.all-component-colors($light-theme);
+}
+
+.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+}
+
+
+.spacer{
+  flex: 1 1 auto
+}
+
+
+
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

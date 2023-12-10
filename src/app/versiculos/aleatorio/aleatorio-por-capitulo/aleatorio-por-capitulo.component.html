@@ -1,0 +1,47 @@
+<div class="container ">
+  <h2 class="mt-4">Versículo Aleatório</h2>
+  <p>Busque um versículo de um livro aleatório</p>
+  <mat-divider></mat-divider>
+
+  <div class="my-2 d-flex gap-2">
+
+    <button mat-raised-button (click)="buscar()" color="primary">Buscar</button>
+
+    <a href="/dashboard" mat-stroked-button type="button" color="accent">Voltar</a>
+    <button mat-stroked-button (click)="limpar()" color="primary">
+      Limpar
+    </button>
+  </div>
+
+  <div class="row d-flex" *ngIf="versiculo$ | async as versiculo">
+
+    <table class="table text-center mt-4">
+      <thead>
+        <tr>
+          <th>Grupo</th>
+          <th>Autor</th>
+          <th>Livro </th>
+          <th>Capitulo</th>
+          <th>Versículo</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td> {{versiculo.book?.group}} </td>
+          <td> {{versiculo.book?.author}} </td>
+          <td> {{versiculo.book?.name}} </td>
+          <td> {{versiculo.chapter}}</td>
+          <td> {{versiculo.number}} </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="row mt-4">
+      <div class="col-lg-6">
+        <app-card-versiculos [versiculo]="versiculo" [numerar]="false"></app-card-versiculos>
+      </div>
+    </div>
+  </div>
+</div>

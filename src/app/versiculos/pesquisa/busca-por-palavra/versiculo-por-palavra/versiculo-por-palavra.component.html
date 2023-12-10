@@ -1,0 +1,70 @@
+<div class="container">
+  <h2 class="mt-4">Versículos Por Palavra</h2>
+  <p>Encontre todos os versículos que possuem a palavra informada.</p>
+  <mat-divider></mat-divider>
+  <div class="form mt-3">
+    <mat-form-field class="full-width">
+      <mat-label>Palavra</mat-label>
+      <input matInput placeholder="Ex. Terra" [(ngModel)]="palavra" autocomplete="off" />
+    </mat-form-field>
+
+    <div class="mb-2 d-flex gap-2">
+      <button mat-raised-button (click)="buscar()" color="primary">
+        Buscar
+      </button>
+      <a href="/dashboard" mat-stroked-button type="button" color="accent">Voltar</a>
+      <button mat-stroked-button (click)="limpar()" color="primary">
+        Limpar
+      </button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="row d-flex" *ngIf="versiculo$ | async as versiculo">
+    <H3>Palavra escolhida: {{ palavra | uppercase }} -
+      {{ versiculo.occurrence }} ocorrências</H3>
+    <div *ngIf="versiculo.occurrence! > 0">
+    <table class="table text-center mt-4">
+      <thead>
+        <tr>
+          <th>Grupo</th>
+          <th>Autor</th>
+          <th>Livro</th>
+          <th>Capitulo</th>
+          <th>Versículo</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>{{ versiculo.verses![index].book?.group }}</td>
+          <td>{{ versiculo.verses![index].book?.author }}</td>
+          <td>{{ versiculo.verses![index].book?.name }}</td>
+          <td>{{ versiculo.verses![index].chapter }}</td>
+          <td>{{ versiculo.verses![index].number }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="row mt-4">
+      <div class="col-lg-6">
+        <p>{{ index + 1 }}/{{ versiculo.occurrence }}</p>
+        <app-card-versiculos [versiculo]="versiculo.verses![index]" [numerar]="false"></app-card-versiculos>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col d-flex gap-3">
+        <span class="spacer"></span>
+        <button [disabled]="index == 0" (click)="anterior()" mat-mini-fab color="accent">
+          <mat-icon aria-hidden="false" fontIcon="navigate_before"></mat-icon>
+        </button>
+        <button [disabled]="index >= versiculo.occurrence! -1" (click)="proximo(versiculo.occurrence!)" mat-mini-fab
+          color="accent">
+          <mat-icon aria-hidden="false" fontIcon="navigate_next"></mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
