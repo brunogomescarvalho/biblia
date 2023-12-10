@@ -24,6 +24,7 @@ export class CapituloComponent
     private snack: MatSnackBar) { }
 
   ngOnInit(): void {
+    console.log("oninit")
     let detalhes = this.route.snapshot.data['detalhes']
     let capitulo = parseInt(this.route.snapshot.params['capitulo'])
     let total = parseInt(this.route.snapshot.params['total'])
@@ -36,18 +37,10 @@ export class CapituloComponent
     this.alterarBtnAtivado(capitulo, total)
     this.detalhes = detalhes
 
-    this.versiculos = this.detalhes?.verses?.map(x => {
-      let verse = new VersiculoViewModel()
-      verse.book = this.detalhes?.book
-      verse.chapter = this.detalhes?.chapter?.number
-      verse.text = x.text
-      verse.number = x.number
-
-      return verse
-
-    })
+    this.mapearVersiculos();
 
   }
+
 
   proximo() {
     let livro = this.route.snapshot.params['livro']
@@ -74,10 +67,23 @@ export class CapituloComponent
       .subscribe(dados => {
         this.router.navigate(["livro", livro, capitulo, total], { relativeTo: this.route.parent });
         this.detalhes = dados;
-
-
+        this.mapearVersiculos();
       });
   }
+
+  private mapearVersiculos() {
+    this.versiculos = this.detalhes?.verses?.map(x => {
+      let verse = new VersiculoViewModel();
+      verse.book = this.detalhes?.book;
+      verse.chapter = this.detalhes?.chapter?.number;
+      verse.text = x.text;
+      verse.number = x.number;
+
+      return verse;
+
+    });
+  }
+
 
   private alterarBtnAtivado(capitulo: number, totalCapitulos: number) {
 

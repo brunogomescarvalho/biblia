@@ -2,6 +2,7 @@
   <h2 class="mt-4">Favoritos</h2>
   <p>Abaixo, você pode visualizar seus versículos favoritos</p>
   <mat-divider></mat-divider>
+  <a class="mt-2" href="/dashboard" mat-raised-button type="button" color="primary">Voltar</a>
 
 
   <div class="row mt-2">
@@ -9,5 +10,4 @@
       <app-card-favoritos (onRemover)="remover(i)" [favorito]="fav"></app-card-favoritos>
     </div>
   </div>
-  <a class="mt-2" href="/dashboard" mat-raised-button type="button" color="primary">Voltar</a>
 </div>
