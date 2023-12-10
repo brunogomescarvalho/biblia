@@ -23,11 +23,8 @@ export class CardVersiculosComponent {
   favoritar(versiculo: VersiculoViewModel) {
     let salvou = this.localStorage.salvarFavorito(versiculo)
 
-    if (salvou)
-      this.snack.open("Versículo salvo com sucesso")
-
-    else
-      this.snack.open("Esse versículo já está salvo")
+    this.snack.open(salvou ? 'Versículo adicionado aos favoritos com sucesso' :
+      'Esse versículo já é favorito')
 
   }
 }

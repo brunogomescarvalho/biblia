@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, take } from 'rxjs';
 import { Livro } from '../../models/models';
 import { ServicoHttp } from '../../services/http/http.service';
 import { FormControl } from '@angular/forms';
@@ -30,7 +30,7 @@ export class PesquisarLivrosComponent implements OnInit {
 
   limpar() {
     if (this.livro$) {
-      this.livro$ = of()
+      this.livro$ = of().pipe(take(1))
       this.livroSelecionado = null
     }
   }

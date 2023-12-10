@@ -8,18 +8,18 @@
     <mat-form-field class="full-width">
       <mat-label>Livros</mat-label>
       <mat-select formControlName="livro">
-        <label class="fs-6  px-3 text-secondary">Nome - Autor</label>
+        <label class="fs-6 px-3 text-secondary">Nome - Autor</label>
         <div *ngFor="let livro of livros$ | async">
-        <mat-option [value]="livro">{{ livro.name }} - {{ livro.author }}</mat-option>
-      </div>
+          <mat-option [value]="livro"
+            >{{ livro.name }} - {{ livro.author }}</mat-option
+          >
+        </div>
       </mat-select>
     </mat-form-field>
 
     <div class="mb-2 d-flex gap-2">
       <button mat-raised-button type="submit" color="primary">Buscar</button>
-      <a href="/dashboard" mat-stroked-button type="button" color="accent"
-        >Voltar</a
-      >
+
       <button
         mat-stroked-button
         type="button"
@@ -28,6 +28,9 @@
       >
         Limpar
       </button>
+      <a href="/dashboard" mat-stroked-button type="button" color="accent"
+        >Voltar</a
+      >
     </div>
   </form>
 

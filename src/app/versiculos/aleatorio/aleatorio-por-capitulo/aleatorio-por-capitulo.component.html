@@ -6,11 +6,11 @@
   <div class="my-2 d-flex gap-2">
 
     <button mat-raised-button (click)="buscar()" color="primary">Buscar</button>
-
-    <a href="/dashboard" mat-stroked-button type="button" color="accent">Voltar</a>
     <button mat-stroked-button (click)="limpar()" color="primary">
       Limpar
     </button>
+    <a href="/dashboard" mat-stroked-button type="button" color="accent">Voltar</a>
+
   </div>
 
   <div class="row d-flex" *ngIf="versiculo$ | async as versiculo">

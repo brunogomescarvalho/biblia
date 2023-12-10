@@ -2,13 +2,15 @@
 
   <div class="row d-flex justify-content-center">
 
-    <h2>Versículo Livro {{versiculo?.book?.name}}</h2>
+    <h2>Versículo</h2>
+    <h3>Livro {{versiculo?.book?.name}}</h3>
     <table class="table text-center">
       <thead>
         <tr>
           <th>Autor</th>
           <th>Grupo</th>
           <th>Capitulo</th>
+          <th>Versículo</th>
         </tr>
       </thead>
 
@@ -17,6 +19,7 @@
           <td>{{versiculo?.book?.author}}</td>
           <td>{{versiculo?.book?.group}}</td>
           <td>{{versiculo?.chapter}}</td>
+          <td>{{versiculo?.number}}</td>
 
         </tr>
       </tbody>

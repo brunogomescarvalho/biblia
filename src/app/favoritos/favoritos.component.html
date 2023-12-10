@@ -4,45 +4,24 @@
   <mat-divider></mat-divider>
   <div class="row">
     <div class="col">
-      <a
-        class="mt-2"
-        href="/dashboard"
-        mat-raised-button
-        type="button"
-        color="primary"
-        >Voltar</a
-      >
+      <a class="mt-2" href="/dashboard" mat-raised-button type="button" color="primary">Voltar</a>
     </div>
     <div class="col text-end">
-      <a
-        class="my-4 botao"
-        (click)="alterarGrade()"
-        mat-icon-button
-        color="accent"
-        ><mat-icon>{{ grade ? "table_rows" : "grid_on" }}</mat-icon></a
-      >
+      <a class="my-4 botao" (click)="alterarGrade()" mat-icon-button color="accent"><mat-icon>{{ grade ? "table_rows" :
+          "grid_on" }}</mat-icon></a>
     </div>
   </div>
 
   <div class="row mt-2" *ngIf="grade">
-    <div
-      *ngFor="let fav of favoritos; index as i"
-      class="col-lg-4 col-md-6 col-sm-12 mb-2"
-    >
-      <app-card-favoritos
-        (onRemover)="remover(i)"
-        [favorito]="fav"
-      ></app-card-favoritos>
+    <div *ngFor="let fav of favoritos; index as i" class="col-lg-4 col-md-6 col-sm-12 mb-2">
+      <app-card-favoritos (onRemover)="remover(i)" [favorito]="fav"></app-card-favoritos>
     </div>
   </div>
 
   <div class="row mt-2" *ngIf="!grade">
     <div *ngFor="let fav of favoritos; index as i">
       <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
-        <app-card-favoritos
-          (onRemover)="remover(i)"
-          [favorito]="fav"
-        ></app-card-favoritos>
+        <app-card-favoritos (onRemover)="remover(i)" [favorito]="fav"></app-card-favoritos>
       </div>
     </div>
   </div>
