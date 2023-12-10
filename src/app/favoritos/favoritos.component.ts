@@ -12,6 +12,8 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 export class FavoritosComponent implements OnInit {
   favoritos?: VersiculoViewModel[];
 
+  grade: boolean = true
+
   constructor(
     private route: ActivatedRoute,
     private snack: MatSnackBar,
@@ -29,5 +31,13 @@ export class FavoritosComponent implements OnInit {
     this.favoritos?.splice(index, 1)
 
     this.snack.open('Favorito removido com sucesso');
+  }
+
+  alterarGradeMobile() {
+    this.grade = window.innerWidth <= 768
+  }
+
+  alterarGrade() {
+    this.grade = !this.grade
   }
 }
