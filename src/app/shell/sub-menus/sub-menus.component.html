@@ -1,0 +1,19 @@
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <div class="d-flex align-items-center"><mat-icon color="accent" class="fs-4 me-2">{{icone}}</mat-icon>
+        <span class="fs-5 fw-light">{{titulo}}</span>
+      </div>
+    </mat-panel-title>
+
+  </mat-expansion-panel-header>
+  <mat-list>
+    <div *ngFor="let opt of opcoesSubMenu">
+      <a mat-list-item href={{opt.link}} style="cursor: pointer;">
+        <div class="d-flex align-items-center"><mat-icon  class="fs-4 me-2">{{opt.icone}}</mat-icon>
+          <span class="fs-6">{{opt.opcao}}</span>
+        </div>
+      </a>
+    </div>
+  </mat-list>
+</mat-expansion-panel>

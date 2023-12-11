@@ -14,6 +14,7 @@ import { TemaService } from './services/tema/tema.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
+import { SubMenusComponent } from './shell/sub-menus/sub-menus.component';
 
 export function atribuirTemaUsuarioFactory(temaService: TemaService) {
   return () => temaService.aplicarTemaUsuario();
@@ -22,7 +23,8 @@ export function atribuirTemaUsuarioFactory(temaService: TemaService) {
 @NgModule({
   declarations: [
     AppComponent,
-    ShellComponent
+    ShellComponent,
+    SubMenusComponent
   ],
   imports: [
     BrowserModule,

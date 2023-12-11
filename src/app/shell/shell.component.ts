@@ -14,9 +14,26 @@ import { ActivatedRoute, UrlSegment } from '@angular/router';
 })
 export class ShellComponent implements OnInit {
 
+  opcoesVersiculos = [
+    { link: '/versiculos', icone: 'search', opcao: 'Pesquisar' },
+    { link: '/versiculos/palavra', icone: 'manage_search', opcao: 'Palavra' },
+  ]
+
+  opcoesAleatorios=[
+    { link: '/versiculos-aleatorios', icone: 'book', opcao: 'Todos' },
+    { link: '/versiculos-aleatorios/livro', icone: 'library_books', opcao: 'Por Livro' },
+  ]
+
+  opcoesLivros=[
+    { link: '/livros', icone: 'library_books', opcao: 'Todos' },
+    { link: '/livros/pesquisar', icone: 'search', opcao: 'Pesquisar' },
+  ]
+
   mostrarCarregamento$!: Observable<boolean>
 
   temaAtual?: Tema
+
+  panelOpenState = false;
 
   constructor(private loadingService: LoadingService, private temaService: TemaService) { }
 
@@ -47,6 +64,10 @@ export class ShellComponent implements OnInit {
     this.temaAtual = novoTema
 
     this.temaService.alterarTema(this.temaAtual)
+
+
+
+
   }
 
 

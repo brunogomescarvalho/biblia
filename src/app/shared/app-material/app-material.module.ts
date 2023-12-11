@@ -14,6 +14,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   exports: [
@@ -33,7 +35,10 @@ import {MatMenuModule} from '@angular/material/menu';
     MatIconModule,
     MatProgressSpinnerModule,
     MatAutocompleteModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTreeModule,
+    MatExpansionModule
+
   ],
 })
 export class AppMaterialModule {}
