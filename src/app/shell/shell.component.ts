@@ -19,14 +19,15 @@ export class ShellComponent implements OnInit {
     { link: '/versiculos/palavra', icone: 'manage_search', opcao: 'Palavra' },
   ]
 
-  opcoesAleatorios=[
+  opcoesAleatorios = [
     { link: '/versiculos-aleatorios', icone: 'book', opcao: 'Todos' },
     { link: '/versiculos-aleatorios/livro', icone: 'library_books', opcao: 'Por Livro' },
   ]
 
-  opcoesLivros=[
-    { link: '/livros', icone: 'library_books', opcao: 'Todos' },
+  opcoesLivros = [
     { link: '/livros/pesquisar', icone: 'search', opcao: 'Pesquisar' },
+    { link: '/livros', icone: 'library_books', opcao: 'Todos' }
+
   ]
 
   mostrarCarregamento$!: Observable<boolean>
