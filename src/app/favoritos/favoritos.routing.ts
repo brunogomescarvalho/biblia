@@ -1,10 +1,10 @@
 import { inject } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { FavoritosService } from "../services/favoritos/favoritos.service";
+import { LocalStorageService } from "../services/favoritos/localStorage.service";
 import { FavoritosComponent } from "./favoritos.component";
 
 export const resolverFavoritos = () => {
-  return inject(FavoritosService).obterFavoritos()
+  return inject(LocalStorageService).obterFavoritos()
 }
 
 const routes: Routes = [

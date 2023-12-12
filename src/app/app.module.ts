@@ -1,24 +1,21 @@
-import { resolveLivros } from './livros/livros.routing';
-import { ShellComponent } from './shell/shell.component';
+import { IMAGE_CONFIG } from '@angular/common';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { IMAGE_CONFIG } from '@angular/common';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { LocalStorageService } from './services/favoritos/localStorage.service';
 import { IncluirTokenInterceptor } from './services/http/token.interceptor';
 import { interceptorLoading } from './services/loading/interceptor-loading';
 import { LoadingService } from './services/loading/loadingService';
 import { ImagemService } from './services/tema/imagem.service';
 import { TemaService } from './services/tema/tema.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
-import { AppMaterialModule } from './shared/app-material/app-material.module';
-import { SubMenusComponent } from './shell/sub-menus/sub-menus.component';
-import { FavoritosService } from './services/favoritos/favoritos.service';
 import { SharedModule } from './shared/shared.module';
-import { ServicoHttp } from './services/http/http.service';
+import { ShellComponent } from './shell/shell.component';
+import { SubMenusComponent } from './shell/sub-menus/sub-menus.component';
 
 export function atribuirTemaUsuarioFactory(temaService: TemaService) {
   return () => temaService.aplicarTemaUsuario();
@@ -39,7 +36,7 @@ export function atribuirTemaUsuarioFactory(temaService: TemaService) {
     SharedModule
   ],
   providers: [
-    FavoritosService,
+    LocalStorageService,
     LoadingService,
     TemaService,
     ImagemService,

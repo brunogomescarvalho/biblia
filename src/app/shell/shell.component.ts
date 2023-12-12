@@ -16,17 +16,17 @@ export class ShellComponent implements OnInit {
 
   opcoesVersiculos = [
     { link: '/versiculos', icone: 'search', opcao: 'Pesquisar' },
-    { link: '/versiculos/palavra', icone: 'manage_search', opcao: 'Palavra' },
+    { link: '/versiculos/palavra', icone: 'manage_search', opcao: 'Por Palavra' },
   ]
 
   opcoesAleatorios = [
-    { link: '/versiculos-aleatorios', icone: 'book', opcao: 'Todos' },
+    { link: '/versiculos-aleatorios', icone: 'travel_explore', opcao: 'Todos' },
     { link: '/versiculos-aleatorios/livro', icone: 'library_books', opcao: 'Por Livro' },
   ]
 
   opcoesLivros = [
     { link: '/livros/pesquisar', icone: 'search', opcao: 'Pesquisar' },
-    { link: '/livros', icone: 'library_books', opcao: 'Todos' }
+    { link: '/livros', icone: 'library_books', opcao: 'Listar' }
 
   ]
 

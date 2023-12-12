@@ -1,32 +1,32 @@
 <mat-sidenav-container class="sidenav-container">
 
   <!-- sidenav -->
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  <mat-sidenav #drawer class="sidenav"  fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side' " [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
 
       <a class="px-4" mat-list-item href="/dashboard">
         <div class="d-flex align-items-center"><mat-icon color="accent" class="fs-4 me-2">dashboard</mat-icon>
-          <span class="fs-5 fw-light">Inicio</span>
+          <span class="fs-6 ">Inicio</span>
         </div>
       </a>
 
       <a class="px-4" mat-list-item href="/favoritos">
         <div class="d-flex align-items-center"><mat-icon color="accent" class="fs-4 me-2">favorite</mat-icon>
-          <span class="fs-5 fw-light">Favoritos</span>
+          <span class="fs-6 ">Favoritos</span>
         </div>
       </a>
 
       <a class="px-4" mat-list-item href="/capitulos">
         <div class="d-flex align-items-center"><mat-icon color="accent" class="fs-4 me-2">auto_stories</mat-icon>
-          <span class="fs-5 fw-light fw-light">Capítulos</span>
+          <span class="fs-6  ">Capítulos</span>
         </div>
       </a>
 
       <app-sub-menus titulo='Versículos' icone="text_snippet" [opcoesSubMenu]="opcoesVersiculos" />
       <app-sub-menus titulo='Livros' icone="library_books" [opcoesSubMenu]="opcoesLivros" />
-      <app-sub-menus titulo='Aleatórios' icone="shuffle" [opcoesSubMenu]="opcoesAleatorios" />
+      <app-sub-menus titulo='Versos Aleatórios' icone="wb_sunny" [opcoesSubMenu]="opcoesAleatorios" />
 
       <mat-divider></mat-divider>
       <a mat-list-item color="accent" (click)="alterarTema()">

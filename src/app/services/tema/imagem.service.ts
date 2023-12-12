@@ -14,19 +14,23 @@ export class ImagemService {
   constructor() {
     this.alterarCorImagens = new BehaviorSubject<string>('default-theme');
 
-    this.imagensDefault.set('dash', '../../../assets/dash-default.svg')
-    this.imagensDark.set('dash','../../../assets/dash-dark.svg')
-    this.imagensLight.set('dash','../../../assets/dash-light.svg')
+    this.imagensDefault.set('dash', '../../../assets/dash-default.svg'),
+      this.imagensLight.set('three', '../../../assets/three-light.svg')
+
+    this.imagensDark.set('dash', '../../../assets/dash-dark.svg')
+
+    this.imagensLight.set('dash', '../../../assets/dash-light.svg')
   }
 
 
   obterImagem(tema: string, nome: string) {
 
-    let grupo: Map<string, string> = this.imagensDefault
+    let grupo: Map<string, string>;
 
     switch (tema) {
       case 'light-theme': grupo = this.imagensLight; break
       case 'dark-theme': grupo = this.imagensDark; break
+      default: grupo = this.imagensDefault; break
     }
 
     return grupo.get(nome)

@@ -1,14 +1,10 @@
-import { NgModule, inject } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { FavoritosService } from './services/favoritos/favoritos.service';
-import { resolverFavoritos } from './favoritos/favoritos.routing';
-import { resolveLivros } from './livros/livros.routing';
-import { ServicoHttp } from './services/http/http.service';
 
-const salmoResolve = () => {
-  return inject(ServicoHttp).ObterVersiculoAleatorioDeUmLivro('sl')
-}
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { resolverFavoritos } from './favoritos/favoritos.routing';
+
+
 
 
 const routes: Routes = [

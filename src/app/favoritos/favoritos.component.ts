@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { VersiculoViewModel } from "../models/models";
-import { FavoritosService } from "../services/favoritos/favoritos.service";
+import { LocalStorageService } from "../services/favoritos/localStorage.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
@@ -17,7 +17,7 @@ export class FavoritosComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private snack: MatSnackBar,
-    private favoritoService: FavoritosService) { }
+    private favoritoService: LocalStorageService) { }
 
   ngOnInit(): void {
     this.favoritos = this.route.snapshot.data['favoritos'];
