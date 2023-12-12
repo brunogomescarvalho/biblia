@@ -13,13 +13,13 @@
   </div>
 
   <div class="row mt-2" *ngIf="grade">
-    <div *ngFor="let fav of favoritos?.reverse(); index as i" class="col-lg-4 col-md-6 col-sm-12 mb-2">
+    <div *ngFor="let fav of favoritos; index as i" class="col-lg-4 col-md-6 col-sm-12 mb-2">
       <app-card-favoritos (onRemover)="remover(fav)" [favorito]="fav"></app-card-favoritos>
     </div>
   </div>
 
   <div class="row mt-2" *ngIf="!grade">
-    <div *ngFor="let fav of favoritos?.reverse(); index as i">
+    <div *ngFor="let fav of favoritos; index as i">
       <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
         <app-card-favoritos (onRemover)="remover(fav)" [favorito]="fav"></app-card-favoritos>
       </div>
