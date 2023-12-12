@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { SharedModule } from 'src/app/shared/shared.module';
 
 import { VersiculoViewModel } from '../../models/models';
 
@@ -13,6 +12,8 @@ export class CardFavoritosComponent {
   @Input({ required: true }) favorito!: VersiculoViewModel
 
   @Output() onRemover = new EventEmitter<VersiculoViewModel>()
+
+
 
   remover() {
     this.onRemover.emit()

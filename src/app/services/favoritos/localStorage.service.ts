@@ -11,11 +11,12 @@ export class LocalStorageService {
 
   obterFavoritos() {
     let dados = localStorage.getItem(this.nome)
-    return dados ? JSON.parse(dados) as VersiculoViewModel[] : []
+
+    return dados ? Array.from(JSON.parse(dados)).reverse() as VersiculoViewModel[] : []
   }
 
   ehFavorito(verse: VersiculoViewModel) {
-   return this.obterFavoritos().findIndex(x => x.text == verse.text) != -1
+    return this.obterFavoritos().findIndex(x => x.text == verse.text) != -1
   }
 
   salvarFavorito(verse: VersiculoViewModel): boolean {
