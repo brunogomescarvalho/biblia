@@ -1,13 +1,13 @@
-import { FavoritosService } from './../services/favoritos/favoritos.service';
-import { Observable, first, map, take } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Livro, VersiculoViewModel } from '../models/models';
-import { ImagemService } from '../services/tema/imagem.service';
-import { ServicoHttp } from '../services/http/http.service';
 import { DadosPreviosService } from '../services/dadosPrevios/dados-previos.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ServicoHttp } from '../services/http/http.service';
+import { ImagemService } from '../services/tema/imagem.service';
+import { FavoritosService } from './../services/favoritos/favoritos.service';
+import { take } from 'rxjs';
 
 
 @Component({
@@ -74,6 +74,7 @@ export class DashboardComponent implements OnInit {
 
     else {
       this.servicehttp.ObterVersiculoAleatorioDeUmLivro('sl')
+        .pipe(take(1))
         .subscribe(x => {
           if (this.dados.validarSalmo(x)) {
             this.dados.salvarSalmoDoDia(x)
