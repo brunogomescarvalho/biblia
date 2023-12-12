@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of, take } from 'rxjs';
+import { Observable, map, of, take } from 'rxjs';
 import { Livro } from '../../models/models';
 import { ServicoHttp } from '../../services/http/http.service';
 import { FormControl } from '@angular/forms';
+import { LocalStorageService } from 'src/app/services/favoritos/localStorage.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pesquisar-livros',
@@ -11,7 +13,7 @@ import { FormControl } from '@angular/forms';
 })
 export class PesquisarLivrosComponent implements OnInit {
 
-  constructor(private service: ServicoHttp) { }
+  constructor(private service: ServicoHttp, private route: ActivatedRoute, private localStorage: LocalStorageService) { }
 
   livros$!: Observable<Livro[]>
 
@@ -20,7 +22,7 @@ export class PesquisarLivrosComponent implements OnInit {
   livroSelecionado!: any
 
   ngOnInit(): void {
-    this.livros$ = this.service.ObterLivros()
+    this.livros$ = this.route.data.pipe(map(x => x['livros']))
   }
 
   buscar() {

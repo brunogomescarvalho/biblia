@@ -24,7 +24,8 @@ const routes: Routes = [
   },
   {
     path: "pesquisar",
-    component: PesquisarLivrosComponent
+    component: PesquisarLivrosComponent,
+    resolve: { livros: resolveLivros }
   }
 ];
 

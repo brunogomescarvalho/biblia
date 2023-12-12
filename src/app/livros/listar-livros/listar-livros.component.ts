@@ -11,11 +11,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ListarLivrosComponent implements OnInit {
   livros$!: Observable<Livro[]>
   grade = true
-  constructor(private route: ActivatedRoute, private router:Router) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.livros$ = this.route.data.pipe(map(x => x['livros']))
-      .pipe(first())
 
     window.addEventListener("resize", this.alterarGradeMobile);
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, take } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 
 import { Livro } from '../../models/models';
 import { ServicoHttp } from '../../services/http/http.service';
@@ -21,7 +21,7 @@ export class FormCapituloComponent implements OnInit {
 
   ngOnInit(): void {
     this.gerarFormulario();
-    this.livros$ = this.service.ObterLivros().pipe(take(1));
+    this.livros$ = this.route.data.pipe(map(x => x['livros']))
   }
 
   livros$!: Observable<Livro[]>;

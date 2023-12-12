@@ -25,10 +25,12 @@ export class FavoritosComponent implements OnInit {
     if (this.favoritos?.length == 0) this.snack.open('Nenhum favorito até o momento');
   }
 
-  remover(index: any) {
-    this.favoritoService.remover(index)
+  remover(favorito: VersiculoViewModel) {
+    this.favoritoService.remover(favorito)
 
-    this.favoritos?.splice(index, 1)
+    let index = this.favoritos?.findIndex(x => x.text == favorito.text)
+
+    this.favoritos?.splice(index!, 1)
 
     this.snack.open('Favorito removido com sucesso');
   }

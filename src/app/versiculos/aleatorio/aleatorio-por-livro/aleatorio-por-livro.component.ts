@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 
 import { Livro, VersiculoViewModel } from '../../../models/models';
 import { ServicoHttp } from '../../../services/http/http.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-aleatorio-por-livro',
@@ -11,7 +12,7 @@ import { ServicoHttp } from '../../../services/http/http.service';
   styleUrls: ['./aleatorio-por-livro.component.scss'],
 })
 export class AleatorioPorLivroComponent implements OnInit {
-  constructor(private service: ServicoHttp) { }
+  constructor(private service: ServicoHttp, private route: ActivatedRoute) { }
 
   livros$!: Observable<Livro[]>;
 
@@ -20,7 +21,7 @@ export class AleatorioPorLivroComponent implements OnInit {
   form!: FormGroup;
 
   ngOnInit(): void {
-    this.livros$ = this.service.ObterLivros();
+    this.livros$ = this.route.data.pipe(map(x => x['livros']))
 
     this.form = new FormGroup({
       livro: new FormControl(null, [Validators.required]),

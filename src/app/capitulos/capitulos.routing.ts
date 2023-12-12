@@ -1,3 +1,4 @@
+import { resolveLivros } from './../livros/livros.routing';
 import { Routes, RouterModule, ActivatedRouteSnapshot } from '@angular/router';
 import { FormCapituloComponent } from './form-capitulo/form-capitulo.component';
 import { NgModule, inject } from '@angular/core';
@@ -21,6 +22,7 @@ const routes: Routes = [
   {
     path: '',
     component: FormCapituloComponent,
+    resolve: { livros: resolveLivros }
   },
   {
     path: 'livro/:livro/:capitulo/:total',
@@ -33,4 +35,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CapitulosRoutes{}
+export class CapitulosRoutes { }
