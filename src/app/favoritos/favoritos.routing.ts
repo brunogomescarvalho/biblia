@@ -4,7 +4,7 @@ import { LocalStorageService } from "../services/favoritos/localStorage.service"
 import { FavoritosComponent } from "./favoritos.component";
 
 export const resolverFavoritos = () => {
-  return inject(LocalStorageService).obterFavoritos()
+  return inject(LocalStorageService).obterFavoritosOrdenado()
 }
 
 const routes: Routes = [

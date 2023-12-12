@@ -16,7 +16,6 @@ import { take } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
   imagemDash?: string;
-  imagemDash0?: string;
 
   favoritos: VersiculoViewModel[] = [];
   livros!: Livro[];
@@ -39,7 +38,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.imagemService.imagemAlterada().subscribe((x) => {
       this.imagemDash = this.imagemService.obterImagem(x, 'dash');
-      this.imagemDash0 = this.imagemService.obterImagem(x, 'three');
     });
 
     this.obterDados();
@@ -92,17 +90,17 @@ export class DashboardComponent implements OnInit {
     ]);
   }
 
-  adicionarFavorito(salmo: VersiculoViewModel) {
+  marcarSalmoFavorito(salmo: VersiculoViewModel) {
     if (this.ehFavorito == false)
       this.localStorageService.salvarFavorito(salmo)
     else
       this.localStorageService.remover(salmo)
 
-    this.favoritos = this.localStorageService.obterFavoritos()
+    this.favoritos = this.localStorageService.obterFavoritosOrdenado()
     this.ehFavorito = !this.ehFavorito
   }
 
-  remover(verse: VersiculoViewModel) {
+  removerFavoritos(verse: VersiculoViewModel) {
     this.localStorageService.remover(verse);
 
     let index = this.favoritos.findIndex(x => x.text = verse.text)
@@ -111,7 +109,9 @@ export class DashboardComponent implements OnInit {
 
     this.snack.open('Favorito removido com sucesso');
 
-    this.favoritos = this.localStorageService.obterFavoritos()
-    this.ehFavorito = !this.ehFavorito
+    this.favoritos = this.localStorageService.obterFavoritosOrdenado()
+
+    if (verse.text == this.salmo?.text)
+      this.ehFavorito = !this.ehFavorito
   }
 }

@@ -9,14 +9,20 @@ export class LocalStorageService {
   private cacheLivros: string = 'cachebiblia'
   private cacheSalmo: string = 'salmoDoDia'
 
-  obterFavoritos() {
+  obterFavoritosOrdenado() {
     let dados = localStorage.getItem(this.nome)
 
     return dados ? Array.from(JSON.parse(dados)).reverse() as VersiculoViewModel[] : []
   }
 
+  obterFavoritos() {
+    let dados = localStorage.getItem(this.nome)
+
+    return dados ? Array.from(JSON.parse(dados)) as VersiculoViewModel[] : []
+  }
+
   ehFavorito(verse: VersiculoViewModel) {
-    return this.obterFavoritos().findIndex(x => x.text == verse.text) != -1
+    return this.obterFavoritosOrdenado().findIndex(x => x.text == verse.text) != -1
   }
 
   salvarFavorito(verse: VersiculoViewModel): boolean {

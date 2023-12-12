@@ -15,7 +15,6 @@ export class ImagemService {
     this.alterarCorImagens = new BehaviorSubject<string>('default-theme');
 
     this.imagensDefault.set('dash', '../../../assets/dash-default.svg'),
-      this.imagensLight.set('three', '../../../assets/three-light.svg')
 
     this.imagensDark.set('dash', '../../../assets/dash-dark.svg')
 
