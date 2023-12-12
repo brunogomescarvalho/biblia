@@ -1,3 +1,4 @@
+import { resolveLivros } from './livros/livros.routing';
 import { ShellComponent } from './shell/shell.component';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,10 +16,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { SubMenusComponent } from './shell/sub-menus/sub-menus.component';
+import { FavoritosService } from './services/favoritos/favoritos.service';
+import { SharedModule } from './shared/shared.module';
+import { ServicoHttp } from './services/http/http.service';
 
 export function atribuirTemaUsuarioFactory(temaService: TemaService) {
   return () => temaService.aplicarTemaUsuario();
 }
+
+
 
 @NgModule({
   declarations: [
@@ -30,9 +36,10 @@ export function atribuirTemaUsuarioFactory(temaService: TemaService) {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AppMaterialModule
+    SharedModule
   ],
   providers: [
+    FavoritosService,
     LoadingService,
     TemaService,
     ImagemService,
@@ -58,6 +65,8 @@ export function atribuirTemaUsuarioFactory(temaService: TemaService) {
       deps: [TemaService],
       multi: true,
     },
+
+
   ],
   bootstrap: [AppComponent]
 })

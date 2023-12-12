@@ -39,6 +39,7 @@ export class ShellComponent implements OnInit {
   constructor(private loadingService: LoadingService, private temaService: TemaService) { }
 
   ngOnInit(): void {
+
     this.temaAtual = this.temaService.obterTemaAtual()
 
     this.mostrarCarregamento$ = this.loadingService.estaCarregando()

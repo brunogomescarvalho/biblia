@@ -112,5 +112,9 @@ export class CapituloComponent
   alterarGrade() {
     this.grade = !this.grade
   }
+
+  voltar(){
+    window.history.back()
+  }
 }
 

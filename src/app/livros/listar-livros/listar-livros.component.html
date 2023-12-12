@@ -18,7 +18,7 @@
   <div *ngIf='grade'>
     <div class="row">
       <div *ngFor="let livro of livros$ | async" class="col-lg-4 col-md-6 col-sm-12 mb-4">
-        <app-card-livros [livro]="livro" />
+        <app-card-livros  (click)="irParaLivro(livro)" style="cursor: pointer;" [livro]="livro" />
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
   <div *ngIf="!grade">
     <div *ngFor="let livro of livros$ | async">
       <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-        <app-card-livros [livro]="livro" />
+        <app-card-livros (click)="irParaLivro(livro)" style="cursor: pointer;" [livro]="livro" />
       </div>
     </div>
   </div>

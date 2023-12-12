@@ -3,8 +3,16 @@ import { ListarLivrosComponent } from './listar-livros/listar-livros.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ServicoHttp } from '../services/http/http.service';
 import { PesquisarLivrosComponent } from './pesquisar-livros/pesquisar-livros.component';
+import { DadosPreviosService } from '../services/dadosPrevios/dados-previos.service';
+import { of } from 'rxjs';
 
-const resolveLivros = () => {
+export const resolveLivros = () => {
+
+  let cache = inject(DadosPreviosService).obterCache()
+
+  if (cache)
+    return of(cache)
+
   return inject(ServicoHttp).ObterLivros()
 }
 const routes: Routes = [
@@ -14,7 +22,7 @@ const routes: Routes = [
     resolve: { livros: resolveLivros }
   },
   {
-    path:"pesquisar",
+    path: "pesquisar",
     component: PesquisarLivrosComponent
   }
 ];

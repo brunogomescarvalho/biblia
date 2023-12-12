@@ -10,8 +10,9 @@ import { PesquisarLivrosComponent } from './pesquisar-livros/pesquisar-livros.co
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [PesquisarLivrosComponent, ListarLivrosComponent, CardLivrosComponent],
+  declarations: [PesquisarLivrosComponent, ListarLivrosComponent],
   imports: [CommonModule, LivrosRoutes, SharedModule,FormsModule],
+  exports:[],
   providers: [ServicoHttp]
 })
 export class LivrosModule { }

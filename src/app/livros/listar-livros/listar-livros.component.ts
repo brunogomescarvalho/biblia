@@ -1,7 +1,7 @@
 import { Observable, first, map } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Livro } from '../../models/models';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-livros',
@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ListarLivrosComponent implements OnInit {
   livros$!: Observable<Livro[]>
   grade = true
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
     this.livros$ = this.route.data.pipe(map(x => x['livros']))
@@ -25,6 +25,10 @@ export class ListarLivrosComponent implements OnInit {
 
   alterarGrade() {
     this.grade = !this.grade
+  }
+
+  irParaLivro(livro: Livro) {
+    this.router.navigate(["/capitulos/livro", livro.abbrev.pt, 1, livro.chapters])
   }
 
 }

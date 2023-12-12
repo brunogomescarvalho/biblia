@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
+import { EventEmitter, Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, catchError, of, throwError } from 'rxjs';
 
 @Injectable()
 export class ServicoHttp {
   private endpoint = 'https://www.abibliadigital.com.br/api';
 
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) { }
 
   public ObterLivros() {
     return this.http.get<any>(`${this.endpoint}/books`);
@@ -39,4 +40,5 @@ export class ServicoHttp {
   public ObterVersiculoPorPalavra(palavra: any) {
     return this.http.post<any>(`${this.endpoint}/verses/search`, palavra);
   }
+
 }
