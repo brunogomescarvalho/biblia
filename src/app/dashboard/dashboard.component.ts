@@ -7,6 +7,7 @@ import { Livro, VersiculoViewModel } from '../models/models';
 import { LocalStorageService } from '../services/localStorage/localStorage.service';
 import { ServicoHttp } from '../services/http/http.service';
 import { ImagemService } from '../services/tema/imagem.service';
+import { WhatsappService } from '../services/whatsapp/whatsapp.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,6 +33,7 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private localStorageService: LocalStorageService,
     private snack: MatSnackBar,
+    private serviceWhats: WhatsappService
   ) { }
 
   ngOnInit(): void {
@@ -112,5 +114,9 @@ export class DashboardComponent implements OnInit {
 
     if (verse.text == this.salmo?.text)
       this.ehFavorito = !this.ehFavorito
+  }
+
+  compartilhar(salmo: VersiculoViewModel) {
+    this.serviceWhats.compartilhar(salmo)
   }
 }

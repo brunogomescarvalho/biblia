@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { VersiculoViewModel } from 'src/app/models/models';
@@ -34,12 +35,8 @@ export class WhatsappService {
 
     let contatos = (JSON.parse(dados) as ContatoModel[])
 
-    return contatos.map(x => {
-      return {
-        nome: x.nome,
-        telefone: this.serviceCrypto.decryptPhoneNumber(x.telefone)
-      } as ContatoModel
-    })
+    return contatos
+
   }
 
   salvarContato(contato: ContatoModel) {
@@ -54,7 +51,7 @@ export class WhatsappService {
       if (index != -1) return { sucesso: false, motivo: 'Número de contato já cadastrado' };
     }
 
-    contato.telefone = this.serviceCrypto.encryptPhoneNumber(contato.telefone)
+    // contato.telefone = this.serviceCrypto.encryptPhoneNumber(contato.telefone)
 
     dados.push(contato);
 
@@ -85,8 +82,6 @@ export class WhatsappService {
       msg: `https://bibliadogui.onrender.com/versiculos/pesquisa/${livro}/${capitulo}/${verso}`,
       numero: telefone,
     };
-
-    console.log(whatsapp)
 
     this.enviarPorWhatsApp(whatsapp);
   }

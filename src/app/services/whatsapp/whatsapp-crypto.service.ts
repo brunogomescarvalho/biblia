@@ -21,6 +21,8 @@ export class CryptoService {
 
 
   decryptPhoneNumber(obfuscatedPhoneNumber: string): string {
+
+    console.log(obfuscatedPhoneNumber)
     let phoneNumber = '';
 
     for (let i = 0; i < obfuscatedPhoneNumber.length; i++) {
@@ -28,7 +30,6 @@ export class CryptoService {
       const charCode = obfuscatedCharCode - this.key;
       phoneNumber += String.fromCharCode(charCode);
     }
-
     return phoneNumber;
   }
 }

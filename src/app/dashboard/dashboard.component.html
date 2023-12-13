@@ -7,12 +7,19 @@
         <div class="col-lg-4 col-sm-8 " *ngIf="salmo">
           <div class="d-flex justify-content-between">
             <h3>Salmo do Dia</h3>
-            <button (click)="marcarSalmoFavorito(salmo)" mat-icon-button color="{{(ehFavorito?'warn':'accent')}}">
-              <mat-icon>favorite</mat-icon>
-            </button>
+            <div>
+              <button (click)="marcarSalmoFavorito(salmo)" mat-icon-button color="{{(ehFavorito?'warn':'accent')}}">
+                <mat-icon>favorite</mat-icon>
+              </button>
+              <button (click)="compartilhar(salmo)" mat-icon-button color='accent'>
+                <mat-icon>send</mat-icon>
+              </button>
+            </div>
           </div>
           <p>{{salmo.text}}</p>
-          <small>{{salmo.book?.name}} {{salmo.chapter}}:{{salmo.number}}</small>
+          <div class="col">
+            <small>{{salmo.book?.name}} {{salmo.chapter}}:{{salmo.number}}</small>
+          </div>
         </div>
         <div class="col-lg-6 col-sm-12 text-end">
           <img class="img-fluid" width="250" src={{imagemDash}} />

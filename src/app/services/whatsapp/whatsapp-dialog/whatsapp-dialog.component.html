@@ -2,7 +2,7 @@
   Compartilhar' : ' Cadastrar'}}</h1>
 
 <div mat-dialog-content>
-  <div class="form" *ngIf="!panelOpenState">
+  <div class="form" *ngIf="!panelOpenState" autocomplete="off">
     <div class="row">
       <div class="col-10">
         <mat-form-field class="full-width">
@@ -27,10 +27,15 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <button *ngIf="!panelOpenState" color="primary" mat-mini-fab (click)="panelOpenState = true">
+ <div  *ngIf="!panelOpenState" class="col d-flex justify-content-around">
+  <button color="primary" mat-mini-fab (click)="panelOpenState = true;telefone = '';nome=''">
     <mat-icon>add</mat-icon></button>
 
-  <form class="form" *ngIf="panelOpenState == true">
+    <button color="primary" mat-mini-fab [mat-dialog-close]>
+      <mat-icon>arrow_back</mat-icon></button>
+ </div>
+
+  <form class="form" *ngIf="panelOpenState == true" >
     <mat-form-field class="full-width">
       <mat-label>Nome</mat-label>
       <input matInput [(ngModel)]="nome" [ngModelOptions]="{standalone:true}">
