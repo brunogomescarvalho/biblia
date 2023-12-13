@@ -36,8 +36,9 @@ export class WhatsappDialogComponent implements OnInit {
     let salvou = this.serviceWhats.salvarContato(contato)
 
     if (salvou.sucesso == true) {
-      this.serviceWhats.enviarMensagem(this.telefone!, this.data)
       this.contatos = this.serviceWhats.obterContatos()
+      this.panelOpenState = false
+      this.contatoSelecionado = contato
     }
 
     else
