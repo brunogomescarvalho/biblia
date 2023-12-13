@@ -3,7 +3,7 @@ import { Observable, map, of, take } from 'rxjs';
 import { Livro } from '../../models/models';
 import { ServicoHttp } from '../../services/http/http.service';
 import { FormControl } from '@angular/forms';
-import { LocalStorageService } from 'src/app/services/favoritos/localStorage.service';
+import { LocalStorageService } from 'src/app/services/localStorage/localStorage.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

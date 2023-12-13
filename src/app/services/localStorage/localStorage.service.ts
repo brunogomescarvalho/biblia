@@ -4,7 +4,6 @@ import { Livro, VersiculoViewModel } from '../../models/models';
 @Injectable()
 export class LocalStorageService {
 
-  private livros: Livro[] = []
   private nome: string = 'FavoritosDaBiblia'
   private cacheLivros: string = 'cachebiblia'
   private cacheSalmo: string = 'salmoDoDia'
@@ -22,7 +21,7 @@ export class LocalStorageService {
   }
 
   ehFavorito(verse: VersiculoViewModel) {
-    return this.obterFavoritosOrdenado().findIndex(x => x.text == verse.text) != -1
+    return this.obterFavoritosOrdenado().findIndex(x => x?.text == verse?.text) != -1
   }
 
   salvarFavorito(verse: VersiculoViewModel): boolean {
@@ -94,6 +93,17 @@ export class LocalStorageService {
 
     return primeiraLetra == primeiraLetra.toUpperCase() && ultimaLetra == '.'
 
+  }
+
+  getLocalStorageSizeInfo() {
+    const totalBytes = new TextEncoder().encode(JSON.stringify(localStorage)).length;
+    const maxSizeBytes = 5 * 1024 * 1024; // 5 MB é um valor comum, mas pode variar
+
+    return {
+      totalBytes,
+      maxSizeBytes,
+      usedPercentage: (totalBytes / maxSizeBytes) * 100,
+    };
   }
 
 }

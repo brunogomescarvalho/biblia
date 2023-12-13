@@ -1,0 +1,64 @@
+<h1 mat-dialog-title><mat-icon>shared</mat-icon> Compartilhar </h1>
+<div mat-dialog-content>
+  <div class="form" *ngIf="!panelOpenState">
+    <div class="row">
+      <div class="col-10">
+        <mat-form-field class="full-width">
+          <mat-label>Telefone</mat-label>
+          <input matInput placeholder="55dddnumero" [(ngModel)]="telefone" type="text"
+            [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+      </div>
+      <div class="col-2 text-center">
+        <button class="mb-3" mat-mini-fab type="button" color="accent" (click)="compartilhar()">
+          <mat-icon>send</mat-icon>
+        </button>
+      </div>
+    </div>
+    <mat-form-field class="full-width">
+      <mat-label>Contatos</mat-label>
+      <mat-select [(ngModel)]="contatoSelecionado" (ngModelChange)="telefone = contatoSelecionado?.telefone"
+        [ngModelOptions]="{standalone: true}">
+        <div *ngFor="let contato of contatos ">
+          <mat-option [value]="contato">{{ contato?.nome }}</mat-option>
+        </div>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <mat-accordion>
+    <mat-expansion-panel #panel (opened)="panelOpenState = true; telefone='';nome=''"
+      (closed)="panelOpenState = false;telefone = contatoSelecionado?.telefone">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Cadastrar Contato
+        </mat-panel-title>
+        <mat-panel-description>
+
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <form class="form">
+        <mat-form-field class="full-width">
+          <mat-label>Nome</mat-label>
+          <input matInput [(ngModel)]="nome" [ngModelOptions]="{standalone:true}">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Telefone</mat-label>
+          <input matInput [(ngModel)]="telefone" [ngModelOptions]="{standalone:true}">
+        </mat-form-field>
+
+        <div mat-dialog-actions>
+          <button mat-raised-button color="primary" type="button" (click)="salvarContato()">Salvar</button>
+          <button mat-stroked-button color="accent" type="button" (click)="panel.close()">Voltar</button>
+          <span class="spacer"></span>
+          <button mat-mini-fab color="primary" type="button" (click)="removerContatos()">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <small class="mx-2">Limpar Contatos</small>
+        </div>
+      </form>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</div>

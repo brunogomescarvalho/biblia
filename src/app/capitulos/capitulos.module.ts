@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CapituloComponent } from './capitulo/capitulo.component';
 import { CapitulosRoutes } from './capitulos.routing';
 import { FormCapituloComponent } from './form-capitulo/form-capitulo.component';
+import { WhatsappService } from '../services/whatsapp/whatsapp.service';
 
 
 @NgModule({

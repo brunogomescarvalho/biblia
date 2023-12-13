@@ -3,9 +3,8 @@ import { ListarLivrosComponent } from './listar-livros/listar-livros.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ServicoHttp } from '../services/http/http.service';
 import { PesquisarLivrosComponent } from './pesquisar-livros/pesquisar-livros.component';
-import { DadosPreviosService } from '../services/dadosPrevios/dados-previos.service';
 import { of } from 'rxjs';
-import { LocalStorageService } from '../services/favoritos/localStorage.service';
+import { LocalStorageService } from '../services/localStorage/localStorage.service';
 
 export const resolveLivros = () => {
 

@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LocalStorageService } from './services/favoritos/localStorage.service';
+import { LocalStorageService } from './services/localStorage/localStorage.service';
 import { IncluirTokenInterceptor } from './services/http/token.interceptor';
 import { interceptorLoading } from './services/loading/interceptor-loading';
 import { LoadingService } from './services/loading/loadingService';
@@ -16,6 +16,7 @@ import { TemaService } from './services/tema/tema.service';
 import { SharedModule } from './shared/shared.module';
 import { ShellComponent } from './shell/shell.component';
 import { SubMenusComponent } from './shell/sub-menus/sub-menus.component';
+import { WhatsappDialogComponent } from './services/whatsapp/whatsapp-dialog/whatsapp-dialog.component';
 
 export function atribuirTemaUsuarioFactory(temaService: TemaService) {
   return () => temaService.aplicarTemaUsuario();
@@ -27,7 +28,8 @@ export function atribuirTemaUsuarioFactory(temaService: TemaService) {
   declarations: [
     AppComponent,
     ShellComponent,
-    SubMenusComponent
+    SubMenusComponent,
+
   ],
   imports: [
     BrowserModule,

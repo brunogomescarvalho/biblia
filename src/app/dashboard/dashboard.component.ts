@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs';
 
 import { Livro, VersiculoViewModel } from '../models/models';
-import { DadosPreviosService } from '../services/dadosPrevios/dados-previos.service';
+import { LocalStorageService } from '../services/localStorage/localStorage.service';
 import { ServicoHttp } from '../services/http/http.service';
 import { ImagemService } from '../services/tema/imagem.service';
-import { LocalStorageService } from '../services/favoritos/localStorage.service';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,7 +31,7 @@ export class DashboardComponent implements OnInit {
     private servicehttp: ServicoHttp,
     private router: Router,
     private localStorageService: LocalStorageService,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
   ) { }
 
   ngOnInit(): void {

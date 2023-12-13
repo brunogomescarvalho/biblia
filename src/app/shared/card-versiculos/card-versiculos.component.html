@@ -7,12 +7,15 @@
           {{ versiculo.text }}</span
         >
       </div>
+     <div class="col-1 p-0">
       <button [matMenuTriggerFor]="menu" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu" class="p-0">
         <button mat-menu-item (click)="favoritar(versiculo)">Favorito</button>
+        <button mat-menu-item (click)="compartilhar(versiculo)">Compartilhar</button>
       </mat-menu>
+     </div>
     </div>
   </mat-card-content>
 </mat-card>

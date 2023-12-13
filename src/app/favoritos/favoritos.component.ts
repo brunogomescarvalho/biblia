@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { VersiculoViewModel } from "../models/models";
-import { LocalStorageService } from "../services/favoritos/localStorage.service";
+import { LocalStorageService } from "../services/localStorage/localStorage.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
