@@ -24,10 +24,9 @@
         </button>
       </div>
     </div>
-    <mat-form-field class="full-width">
+    <mat-form-field class="full-width" *ngIf="contatos">
       <mat-label>Contatos</mat-label>
-      <mat-select [(ngModel)]="contatoSelecionado" (ngModelChange)="telefone = contatoSelecionado?.telefone"
-        [ngModelOptions]="{ standalone: true }">
+      <mat-select [(ngModel)]="contatoSelecionado" [ngModelOptions]="{ standalone: true }">
         <div *ngFor="let contato of contatos">
           <mat-option [value]="contato">{{ contato?.nome }}</mat-option>
         </div>

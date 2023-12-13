@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { ContatoModel, WhatsappService } from '../whatsapp.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-whatsapp-dialog',
@@ -20,10 +21,13 @@ export class WhatsappDialogComponent implements OnInit {
   nome?: string
   telefone?: string
 
+  form!: FormGroup
+
   panelOpenState = false
 
   ngOnInit(): void {
     this.contatos = this.serviceWhats.obterContatos()
+
   }
 
   salvarContato() {
@@ -38,7 +42,7 @@ export class WhatsappDialogComponent implements OnInit {
     if (salvou.sucesso == true) {
       this.contatos = this.serviceWhats.obterContatos()
       this.panelOpenState = false
-      this.contatoSelecionado = contato
+      this.contatoSelecionado = this.contatos.find(x => x.telefone == contato.telefone)
     }
 
     else
