@@ -1,18 +1,21 @@
 
 
 <mat-card appCardHover>
-  <div class="row d-flex justify-content-center p-2">
+  <div class="row d-flex justify-content-center p-3">
     <div class="col">
-      <mat-card-subtitle>Grupo:  <span class="fw-normal">{{livro?.group}}</span></mat-card-subtitle>
-      <mat-card-subtitle>Nome: <span class="fw-normal">{{livro?.name}}</span></mat-card-subtitle>
-      <mat-card-subtitle>Autor: <span class="fw-normal">{{livro?.author}}</span></mat-card-subtitle>
+    <mat-card-subtitle class="fs-6 fw-normal">Grupo: </mat-card-subtitle>
+    <mat-card-subtitle class="fs-6 fw-normal">Nome:       </mat-card-subtitle>
+    <mat-card-subtitle class="fs-6 fw-normal">Autor:      </mat-card-subtitle>
+    <mat-card-subtitle class="fs-6 fw-normal">Capítulos:  </mat-card-subtitle>
+    <mat-card-subtitle class="fs-6 fw-normal">Testamento: </mat-card-subtitle>
     </div>
 
       <div class="col-6 text-end  pt-1">
-
-        <mat-card-subtitle>Capítulos:  <span class="fw-normal">{{livro?.chapters}}</span></mat-card-subtitle>
-
-        <mat-card-subtitle>Testamento:  <span class="fw-normal">{{livro?.testament == 'VT' ? 'Antigo':'Novo'}}</span></mat-card-subtitle>
+        <mat-card-subtitle class="fw-normal">{{livro?.group}}</mat-card-subtitle>
+        <mat-card-subtitle class="fw-normal">{{livro?.name}}</mat-card-subtitle>
+        <mat-card-subtitle class="fw-normal">{{livro?.author}}</mat-card-subtitle>
+        <mat-card-subtitle class="fw-normal">{{livro?.chapters}}</mat-card-subtitle>
+        <mat-card-subtitle class="fw-normal">{{livro?.testament == 'VT' ? 'Antigo':'Novo'}}</mat-card-subtitle>
       </div>
     </div>
 </mat-card>

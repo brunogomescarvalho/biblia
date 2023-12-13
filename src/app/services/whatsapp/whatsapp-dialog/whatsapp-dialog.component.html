@@ -1,10 +1,6 @@
-<h1 mat-dialog-title>
-  <mat-icon>{{ !panelOpenState ? "shared" : "person_add" }}</mat-icon>{{
-  !panelOpenState
-  ? "
-  Compartilhar"
-  : " Cadastrar Contato"
+<h1 mat-dialog-title class="my-0 py-0 pb-1"><span class="px-2 pt-1"> <mat-icon>{{ !panelOpenState ? "shared" : "person_add" }}</mat-icon></span>{{ !panelOpenState? "Compartilhar": "  Cadastrar Contato"
   }}
+
 </h1>
 <mat-divider></mat-divider>
 
@@ -14,7 +10,7 @@
       <div class="col-10">
         <mat-form-field class="full-width">
           <mat-label>Telefone</mat-label>
-          <input type="tel" autofocus="off" matInput placeholder="+55 + número" [(ngModel)]="telefone" required="true"
+          <input type="tel" autofocus="off" matInput placeholder="+55 + número" [(ngModel)]="telefone"
             [ngModelOptions]="{ standalone: true }" />
         </mat-form-field>
       </div>

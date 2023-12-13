@@ -8,27 +8,27 @@
 
       <a class="px-4" mat-list-item href="/dashboard">
         <div class="d-flex align-items-center"><mat-icon color="accent" class="fs-4 me-2">dashboard</mat-icon>
-          <span class="fs-6 ">Inicio</span>
+          <span class="fs-6 fw-light">Inicio</span>
         </div>
       </a>
 
       <a class="px-4" mat-list-item href="/favoritos">
         <div class="d-flex align-items-center"><mat-icon color="accent" class="fs-4 me-2">favorite</mat-icon>
-          <span class="fs-6 ">Favoritos</span>
+          <span class="fs-6 fw-light">Favoritos</span>
         </div>
       </a>
 
       <a class="px-4" mat-list-item href="/capitulos">
         <div class="d-flex align-items-center"><mat-icon color="accent" class="fs-4 me-2">auto_stories</mat-icon>
-          <span class="fs-6  ">Capítulos</span>
+          <span class="fs-6 fw-light  ">Capítulos</span>
         </div>
       </a>
 
       <app-sub-menus titulo='Versículos' icone="text_snippet" [opcoesSubMenu]="opcoesVersiculos" />
       <app-sub-menus titulo='Livros' icone="library_books" [opcoesSubMenu]="opcoesLivros" />
-      <app-sub-menus titulo='Versos Aleatórios' icone="wb_sunny" [opcoesSubMenu]="opcoesAleatorios" />
+      <app-sub-menus titulo='Sortear' icone="wb_sunny" [opcoesSubMenu]="opcoesAleatorios" />
 
-      <mat-divider></mat-divider>
+
       <a mat-list-item color="accent" (click)="alterarTema()">
         <div class="d-flex align-items-center"><mat-icon color="primary" class="fs-4 me-2">contraste</mat-icon>
           <span class="fs-6">Tema</span>
@@ -47,7 +47,8 @@
         *ngIf="(isHandset$ | async)">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <a class="my-2" mat-fab extended href="/dashboard"> <mat-icon>menu_book</mat-icon>Bíblia do Gui</a>
+      <mat-icon  *ngIf="!(isHandset$ | async)" class="fs-4">menu_book</mat-icon>
+      <a class="my-2" mat-button  routerLink="/dashboard"> Bíblia do Gui</a>
 
       <span class="spacer"></span>
       <button mat-button color="accent" (click)="alterarTema()">

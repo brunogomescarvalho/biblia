@@ -1,59 +1,57 @@
-<section class="container">
-  <div class="d-flex align-items-center justify-content-center row my-5">
+<section class="container d-flex align-items-center justify-content-center row my-5">
 
+  <div class="row d-flex justify-content-center align-items-end">
 
-    <div class="row d-flex justify-content-center align-items-end">
-      <div class="row ">
-        <div class="col-lg-4 col-sm-8 " *ngIf="salmo">
-          <div class="d-flex justify-content-between">
-            <h3>Salmo do Dia</h3>
-            <div>
-              <button (click)="marcarSalmoFavorito(salmo)" mat-icon-button color="{{(ehFavorito?'warn':'accent')}}">
-                <mat-icon>favorite</mat-icon>
-              </button>
-              <button (click)="compartilhar(salmo)" mat-icon-button color='accent'>
-                <mat-icon>send</mat-icon>
-              </button>
-            </div>
-          </div>
-          <p>{{salmo.text}}</p>
-          <div class="col">
-            <small>{{salmo.book?.name}} {{salmo.chapter}}:{{salmo.number}}</small>
-          </div>
+    <div class="col-lg-4 col-sm-8 " *ngIf="salmo">
+      <div class="d-flex justify-content-between">
+        <h3>Salmo do Dia</h3>
+        <div>
+          <button (click)="marcarSalmoFavorito(salmo)" mat-icon-button color="{{(ehFavorito?'warn':'accent')}}">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button (click)="compartilhar(salmo)" mat-icon-button color='accent'>
+            <mat-icon>send</mat-icon>
+          </button>
         </div>
-        <div class="col-lg-6 col-sm-12 text-end">
-          <img class="img-fluid" width="250" src={{imagemDash}} />
-        </div>
-        <mat-divider class="mt-4"></mat-divider>
+      </div>
+      <p>{{salmo.text}}</p>
+      <div class="col">
+        <small>{{salmo.book?.name}} {{salmo.chapter}}:{{salmo.number}}</small>
       </div>
     </div>
-
-    <div class="row d-flex justify-content-around mt-3">
-
-      <div class="col-lg-6 col-sm-12 ">
-        <h2>Livros Em Destaque</h2>
-        <mat-divider></mat-divider>
-        <div class="row mt-3">
-          <div class="col-lg-6 col-md-6 col-sm-12 mb-4"
-            *ngFor="let livro of livros | slice:livrosIndexInicial:livrosIndexFinal">
-            <app-card-livros (click)="irParaLivro(livro)" [livro]="livro" style="cursor: pointer;" />
-          </div>
-        </div>
-
-      </div>
-
-      <div class="col-lg-4 col-sm-12">
-        <h2>Favoritos Recentes</h2>
-        <mat-divider></mat-divider>
-        <div *ngIf="favoritos.length == 0" class="mt-2">Seus favoritos aparecerão aqui</div>
-        <div class="row mt-3">
-          <div class="mb-4" *ngFor="let fav of favoritos | slice:0:6 index as i">
-            <app-card-favoritos [favorito]="fav" (onRemover)="removerFavoritos(fav)" />
-          </div>
-        </div>
-      </div>
+    <div class="col-lg-6 col-sm-12 text-end">
+      <img class="img-fluid" width="250" src={{imagemDash}} />
     </div>
-
-
+    <mat-divider class="mt-4"></mat-divider>
   </div>
+
+
+  <div class="row d-flex justify-content-around mt-3">
+
+    <div class="col-lg-6 col-sm-12 ">
+      <h2>Livros Em Destaque</h2>
+      <mat-divider></mat-divider>
+      <div class="row mt-3">
+        <div class="col-lg-6 col-md-6 col-sm-12 mb-4"
+          *ngFor="let livro of livros | slice:livrosIndexInicial:livrosIndexFinal">
+          <app-card-livros (click)="irParaLivro(livro)" [livro]="livro" style="cursor: pointer;" />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-lg-4 col-sm-12">
+      <h2>Favoritos Recentes</h2>
+      <mat-divider></mat-divider>
+      <div *ngIf="favoritos.length == 0" class="mt-2">Seus favoritos aparecerão aqui</div>
+      <div class="row mt-3">
+        <div class="mb-4" *ngFor="let fav of favoritos | slice:0:6 index as i">
+          <app-card-favoritos [favorito]="fav" (onRemover)="removerFavoritos(fav)" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 </section>

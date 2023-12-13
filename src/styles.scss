@@ -19,8 +19,8 @@ $dark-theme: mat.define-dark-theme((color: (primary: $my-primary-dark,
 
 
 
-$my-primary-light : mat.define-palette(mat.$teal-palette, 700);
-$my-accent-light : mat.define-palette(mat.$deep-purple-palette, 800);
+$my-primary-light : mat.define-palette(mat.$deep-purple-palette, 700);
+$my-accent-light : mat.define-palette(mat.$teal-palette);
 $my-warn-light : mat.define-palette(mat.$red-palette);
 
 $light-theme: mat.define-light-theme((color: (primary: $my-primary-light,
@@ -29,15 +29,19 @@ $light-theme: mat.define-light-theme((color: (primary: $my-primary-light,
       ),
       typography: mat.define-typography-config(),
       density: 0,
+
     ));
 
 
 .light-theme {
   @include mat.all-component-colors($light-theme);
+
+
 }
 
 .dark-theme {
   @include mat.all-component-colors($dark-theme);
+
 }
 
 
