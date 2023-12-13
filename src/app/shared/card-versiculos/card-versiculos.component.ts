@@ -30,8 +30,7 @@ export class CardVersiculosComponent {
   }
 
   compartilhar(versiculo: VersiculoViewModel) {
-
-    let dialog = this.whatsService.compartilhar(versiculo)
+    this.whatsService.compartilhar(versiculo)
   }
 
 

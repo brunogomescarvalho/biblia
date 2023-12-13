@@ -41,6 +41,8 @@ export class WhatsappService {
 
   salvarContato(contato: ContatoModel) {
 
+    if (contato.nome.length == 0) return { sucesso: false, motivo: 'Nome inválido' };
+
     if (!this.telefoneEhValido(contato.telefone)) return { sucesso: false, motivo: 'Telefone Inválido' };
 
     let dados = this.obterContatos();

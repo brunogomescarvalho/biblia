@@ -3,18 +3,19 @@
   !panelOpenState
   ? "
   Compartilhar"
-  : " Cadastrar"
+  : " Cadastrar Contato"
   }}
 </h1>
+<mat-divider></mat-divider>
 
 <div mat-dialog-content>
-  <div class="form" *ngIf="!panelOpenState" autocomplete="off">
+  <div class="form" *ngIf="!panelOpenState">
     <div class="row">
       <div class="col-10">
         <mat-form-field class="full-width">
           <mat-label>Telefone</mat-label>
-          <input type="text" autocomplete="off" autofocus="off" matInput placeholder="55dddnumero"
-            [(ngModel)]="telefone" [ngModelOptions]="{ standalone: true }" />
+          <input type="tel" autofocus="off" matInput placeholder="55 + número" [(ngModel)]="telefone" required="true"
+            [ngModelOptions]="{ standalone: true }" />
         </mat-form-field>
       </div>
       <div class="col-2 p-0 d-flex justify-content-start align-items-center text-start">
@@ -46,26 +47,31 @@
   <div class="form" *ngIf="panelOpenState == true">
     <mat-form-field class="full-width">
       <mat-label>Nome</mat-label>
-      <input matInput autocomplete="off" [(ngModel)]="nome" [ngModelOptions]="{ standalone: true }" />
+      <input matInput [(ngModel)]="nome" [ngModelOptions]="{ standalone: true }" />
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Telefone</mat-label>
-      <input matInput type="text" autocomplete="off" placeholder="55dddnumero" [(ngModel)]="telefone"
+      <input matInput type="tel" placeholder="55 + númbero" [(ngModel)]="telefone"
         [ngModelOptions]="{ standalone: true }" />
     </mat-form-field>
 
     <div mat-dialog-actions>
-      <button mat-raised-button color="primary" type="button" (click)="salvarContato()">
-        Salvar
+      <button mat-mini-fab color="accent" type="button" (click)="salvarContato()">
+        <mat-icon>done</mat-icon>
       </button>
-      <button mat-stroked-button color="accent" type="button" (click)="panelOpenState = false">
-        Voltar
+      <button mat-mini-fab color="primary" type="button" (click)="panelOpenState = false">
+        <mat-icon>arrow_back</mat-icon>
       </button>
       <span class="spacer"></span>
-      <button mat-mini-fab color="primary" type="button" (click)="removerContatos()">
+      <button [matMenuTriggerFor]="menu" mat-icon-button>
         <mat-icon>delete</mat-icon>
       </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item type="button" (click)="removerContatos()">
+          Remover Contatos
+        </button>
+      </mat-menu>
     </div>
   </div>
 </div>
