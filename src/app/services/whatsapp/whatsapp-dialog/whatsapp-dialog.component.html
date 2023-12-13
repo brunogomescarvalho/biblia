@@ -1,5 +1,11 @@
-<h1 mat-dialog-title><mat-icon>{{!panelOpenState ? 'shared' : 'person_add'}}</mat-icon>{{!panelOpenState? '
-  Compartilhar' : ' Cadastrar'}}</h1>
+<h1 mat-dialog-title>
+  <mat-icon>{{ !panelOpenState ? "shared" : "person_add" }}</mat-icon>{{
+  !panelOpenState
+  ? "
+  Compartilhar"
+  : " Cadastrar"
+  }}
+</h1>
 
 <div mat-dialog-content>
   <div class="form" *ngIf="!panelOpenState" autocomplete="off">
@@ -7,8 +13,8 @@
       <div class="col-10">
         <mat-form-field class="full-width">
           <mat-label>Telefone</mat-label>
-          <input matInput placeholder="55dddnumero" [(ngModel)]="telefone" type="text"
-            [ngModelOptions]="{standalone: true}">
+          <input type="text" autocomplete="off" autofocus="off" matInput placeholder="55dddnumero"
+            [(ngModel)]="telefone" [ngModelOptions]="{ standalone: true }" />
         </mat-form-field>
       </div>
       <div class="col-2 p-0 d-flex justify-content-start align-items-center text-start">
@@ -20,40 +26,46 @@
     <mat-form-field class="full-width">
       <mat-label>Contatos</mat-label>
       <mat-select [(ngModel)]="contatoSelecionado" (ngModelChange)="telefone = contatoSelecionado?.telefone"
-        [ngModelOptions]="{standalone: true}">
-        <div *ngFor="let contato of contatos ">
+        [ngModelOptions]="{ standalone: true }">
+        <div *ngFor="let contato of contatos">
           <mat-option [value]="contato">{{ contato?.nome }}</mat-option>
         </div>
       </mat-select>
     </mat-form-field>
   </div>
- <div  *ngIf="!panelOpenState" class="col d-flex justify-content-around">
-  <button color="primary" mat-mini-fab (click)="panelOpenState = true;telefone = '';nome=''">
-    <mat-icon>add</mat-icon></button>
+  <div *ngIf="!panelOpenState" class="col d-flex justify-content-around">
+    <button color="primary" mat-mini-fab (click)="panelOpenState = true; telefone = ''; nome = ''">
+      <mat-icon>add</mat-icon>
+    </button>
 
     <button color="primary" mat-mini-fab [mat-dialog-close]>
-      <mat-icon>arrow_back</mat-icon></button>
- </div>
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </div>
 
-  <form class="form" *ngIf="panelOpenState == true" >
+  <div class="form" *ngIf="panelOpenState == true">
     <mat-form-field class="full-width">
       <mat-label>Nome</mat-label>
-      <input matInput [(ngModel)]="nome" [ngModelOptions]="{standalone:true}">
+      <input matInput autocomplete="off" [(ngModel)]="nome" [ngModelOptions]="{ standalone: true }" />
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Telefone</mat-label>
-      <input matInput placeholder="55dddnumero" [(ngModel)]="telefone" [ngModelOptions]="{standalone:true}">
+      <input matInput type="text" autocomplete="off" placeholder="55dddnumero" [(ngModel)]="telefone"
+        [ngModelOptions]="{ standalone: true }" />
     </mat-form-field>
 
     <div mat-dialog-actions>
-      <button mat-raised-button color="primary" type="button" (click)="salvarContato()">Salvar</button>
-      <button mat-stroked-button color="accent" type="button" (click)="panelOpenState = false">Voltar</button>
+      <button mat-raised-button color="primary" type="button" (click)="salvarContato()">
+        Salvar
+      </button>
+      <button mat-stroked-button color="accent" type="button" (click)="panelOpenState = false">
+        Voltar
+      </button>
       <span class="spacer"></span>
       <button mat-mini-fab color="primary" type="button" (click)="removerContatos()">
         <mat-icon>delete</mat-icon>
       </button>
-
     </div>
-  </form>
+  </div>
 </div>
