@@ -93,7 +93,7 @@ export class WhatsappService {
     let verso = versiculo.number;
 
     let whatsapp: WhatsappModel = {
-      msg: `Olá, gostaria de compartilhar um verso bíblico com você.\n\n${versiculo.text}\n\n${versiculo.book?.name}${capitulo}:${verso}\n`,
+      msg: `Olá, gostaria de compartilhar um verso bíblico com você.\n\n${versiculo.text}\n\n${versiculo.book?.name} ${capitulo}:${verso}\n`,
       numero: telefone,
     };
 
