@@ -52,7 +52,7 @@ export class WhatsappDialogComponent implements OnInit {
       this.dialogRef.close()
     }
     else if (this.contatoSelecionado) {
-      this.serviceWhats.enviarMensagem(this.contatoSelecionado.telefone, this.data)
+      this.serviceWhats.enviarLink(this.contatoSelecionado.telefone, this.data)
       this.dialogRef.close()
     }
 

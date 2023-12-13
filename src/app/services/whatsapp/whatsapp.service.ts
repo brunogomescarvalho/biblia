@@ -72,7 +72,7 @@ export class WhatsappService {
     });
   }
 
-  enviarMensagem(telefone: string, versiculo: VersiculoViewModel) {
+  enviarLink(telefone: string, versiculo: VersiculoViewModel) {
 
     let livro = versiculo.book?.abbrev.pt;
     let capitulo = versiculo.chapter;
@@ -80,6 +80,18 @@ export class WhatsappService {
 
     let whatsapp: WhatsappModel = {
       msg: `https://bibliadogui.onrender.com/versiculos/pesquisa/${livro}/${capitulo}/${verso}`,
+      numero: telefone,
+    };
+
+    this.enviarPorWhatsApp(whatsapp);
+  }
+
+  enviarMensagem(telefone: string, versiculo: VersiculoViewModel) {
+    let capitulo = versiculo.chapter;
+    let verso = versiculo.number;
+
+    let whatsapp: WhatsappModel = {
+      msg: `${versiculo.book?.name} ${capitulo}:${verso}\n${versiculo.text}`,
       numero: telefone,
     };
 
