@@ -1,22 +1,36 @@
-
-
 <mat-card appCardHover>
-  <div class="row d-flex justify-content-center p-3">
-    <div class="col">
-    <mat-card-subtitle class="fs-6 fw-normal">Grupo: </mat-card-subtitle>
-    <mat-card-subtitle class="fs-6 fw-normal">Nome:       </mat-card-subtitle>
-    <mat-card-subtitle class="fs-6 fw-normal">Autor:      </mat-card-subtitle>
-    <mat-card-subtitle class="fs-6 fw-normal">Capítulos:  </mat-card-subtitle>
-    <mat-card-subtitle class="fs-6 fw-normal">Testamento: </mat-card-subtitle>
+  <div class="row">
+   <div class="col text-center">
+    <mat-card-title class=" fs-6">{{livro?.name}}</mat-card-title>
+    <mat-divider></mat-divider>
+   </div>
+    <div class="row d-flex justify-content-center mt-1">
+      <dt class="col-3">
+        <label class="control-label fw-normal px-2">Grupo:</label>
+      </dt>
+      <dd class="col-9 text-end px-0">
+        {{livro?.group}}
+      </dd>
+      <dt class="col-3">
+        <label class="control-label fw-normal px-2">Autor:</label>
+      </dt>
+      <dd class="col-9 text-end px-0">
+        {{livro?.author}}
+      </dd>
+      <dt class="col-3">
+        <label class="control-label fw-normal px-2">Capítulos:</label>
+      </dt>
+      <dd class="col-9 text-end px-0">
+        {{livro?.chapters}}
+      </dd>
+      <dt class="col-3">
+        <label class="control-label fw-normal px-2">Testamento:</label>
+      </dt>
+      <dd class="col-9 text-end px-0">
+        {{livro?.testament == 'VT' ? 'Antigo':'Novo'}}
+      </dd>
     </div>
 
-      <div class="col-6 text-end  pt-1">
-        <mat-card-subtitle class="fw-normal">{{livro?.group}}</mat-card-subtitle>
-        <mat-card-subtitle class="fw-normal">{{livro?.name}}</mat-card-subtitle>
-        <mat-card-subtitle class="fw-normal">{{livro?.author}}</mat-card-subtitle>
-        <mat-card-subtitle class="fw-normal">{{livro?.chapters}}</mat-card-subtitle>
-        <mat-card-subtitle class="fw-normal">{{livro?.testament == 'VT' ? 'Antigo':'Novo'}}</mat-card-subtitle>
-      </div>
-    </div>
+  </div>
 </mat-card>
-  <mat-divider></mat-divider>
+<mat-divider></mat-divider>

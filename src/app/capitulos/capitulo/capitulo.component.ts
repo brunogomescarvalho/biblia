@@ -46,6 +46,8 @@ export class CapituloComponent
 
     window.addEventListener("resize", this.alterarGradeMobile);
 
+    this.scrollAoTopo()
+
   }
 
 
@@ -113,7 +115,7 @@ export class CapituloComponent
     this.grade = !this.grade
   }
 
-  voltar(){
+  voltar() {
     window.history.back()
   }
 }

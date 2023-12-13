@@ -1,10 +1,10 @@
-<section class="container d-flex align-items-center justify-content-center row my-5">
+<section class="container d-flex align-items-center justify-content-center row my-5 mx-0">
 
   <div class="row d-flex justify-content-center align-items-end">
 
     <div class="col-lg-4 col-sm-8 " *ngIf="salmo">
-      <div class="d-flex justify-content-between">
-        <h3>Salmo do Dia</h3>
+      <div class="d-flex justify-content-between pb-1">
+        <h3 class="mb-0 d-flex align-items-center">Salmo do Dia</h3>
         <div>
           <button (click)="marcarSalmoFavorito(salmo)" mat-icon-button color="{{(ehFavorito?'warn':'accent')}}">
             <mat-icon>favorite</mat-icon>
