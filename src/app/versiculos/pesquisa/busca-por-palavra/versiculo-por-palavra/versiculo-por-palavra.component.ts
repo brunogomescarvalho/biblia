@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { ServicoHttp } from '../../../../services/http/http.service';
-import { ObterVersiculosPorPalavra } from './../../../../models/models';
+import { ObterVersiculosPorPalavra, VersiculoViewModel } from './../../../../models/models';
+import { LocalStorageService } from 'src/app/services/localStorage/localStorage.service';
 
 @Component({
   selector: 'app-versiculo-por-palavra',

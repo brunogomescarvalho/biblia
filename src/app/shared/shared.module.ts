@@ -7,7 +7,7 @@ import { AppMaterialModule } from './app-material/app-material.module';
 import { CardHoverDirective } from './directives/card-hover-directve';
 import { CardLivrosComponent } from '../livros/card-livros/card-livros.component';
 import { ServicoHttp } from '../services/http/http.service';
-import { WhatsappDialogComponent } from '../services/whatsapp/whatsapp-dialog/whatsapp-dialog.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WhatsappService } from '../services/whatsapp/whatsapp.service';
 
@@ -17,16 +17,16 @@ import { WhatsappService } from '../services/whatsapp/whatsapp.service';
     CardHoverDirective,
     CardFavoritosComponent,
     CardLivrosComponent,
-    WhatsappDialogComponent
+
   ],
-  imports: [CommonModule, AppMaterialModule, FormsModule,ReactiveFormsModule],
+  imports: [CommonModule, AppMaterialModule, FormsModule, ReactiveFormsModule],
   exports: [
     CardHoverDirective,
     AppMaterialModule,
     CardFavoritosComponent,
     CardLivrosComponent,
-    WhatsappDialogComponent
+
   ],
-  providers: [ServicoHttp,WhatsappService],
+  providers: [ServicoHttp, WhatsappService],
 })
-export class SharedModule {}
+export class SharedModule { }

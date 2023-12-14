@@ -46,8 +46,6 @@ export class CapituloComponent
 
     window.addEventListener("resize", this.alterarGradeMobile);
 
-    this.scrollAoTopo()
-
   }
 
 

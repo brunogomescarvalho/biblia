@@ -16,7 +16,7 @@ import { TemaService } from './services/tema/tema.service';
 import { SharedModule } from './shared/shared.module';
 import { ShellComponent } from './shell/shell.component';
 import { SubMenusComponent } from './shell/sub-menus/sub-menus.component';
-import { WhatsappDialogComponent } from './services/whatsapp/whatsapp-dialog/whatsapp-dialog.component';
+
 
 export function atribuirTemaUsuarioFactory(temaService: TemaService) {
   return () => temaService.aplicarTemaUsuario();

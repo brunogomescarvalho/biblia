@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
   }
 
   async obterDados() {
-    this.livrosIndexInicial = Math.floor(Math.random() * 58);
+    this.livrosIndexInicial = Math.floor(Math.random() * 59);
     this.livrosIndexFinal = this.livrosIndexInicial + 6;
 
     this.favoritos = this.route.snapshot.data['favoritos']
@@ -116,7 +116,7 @@ export class DashboardComponent implements OnInit {
       this.ehFavorito = !this.ehFavorito
   }
 
-  compartilhar(salmo: VersiculoViewModel) {
-    this.serviceWhats.compartilhar(salmo)
+  async compartilhar(salmo: VersiculoViewModel) {
+    await this.serviceWhats.compartilhar(salmo)
   }
 }

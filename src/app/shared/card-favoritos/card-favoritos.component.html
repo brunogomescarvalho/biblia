@@ -20,8 +20,17 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="remover()">Remover</button>
-          <button mat-menu-item (click)="compartilhar(favorito)">Compartilhar</button>
+          <div class="d-flex justify-content-between pb-1">
+            <button (click)="remover()" mat-icon-button color="accent">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button (click)="enviarPorWhatsapp(favorito)" mat-icon-button color='accent'>
+              <i class="bi bi-whatsapp"></i>
+            </button>
+            <button (click)="compartilhar(favorito)" mat-icon-button color='accent'>
+              <mat-icon>shared</mat-icon>
+            </button>
+          </div>
         </mat-menu>
       </div>
     </div>

@@ -4,18 +4,26 @@
       <div class="col-10 p-0">
         <span class="fs-6 m-0">
           <span *ngIf="numerar"> {{ versiculo.number }} - </span>
-          {{ versiculo.text }}</span
-        >
+          {{ versiculo.text }}</span>
       </div>
-     <div class="col-1 p-0">
-      <button [matMenuTriggerFor]="menu" mat-icon-button>
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu" class="p-0">
-        <button mat-menu-item (click)="favoritar(versiculo)">Favorito</button>
-        <button mat-menu-item (click)="compartilhar(versiculo)">Compartilhar</button>
-      </mat-menu>
-     </div>
+      <div class="col-1 p-0">
+        <button [matMenuTriggerFor]="menu" mat-icon-button>
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="p-0">
+          <div class="d-flex justify-content-between pb-1">
+            <button (click)="favoritar(versiculo)" mat-icon-button color="accent">
+              <mat-icon>favorite</mat-icon>
+            </button>
+            <button (click)="enviarPorWhatsapp(versiculo)" mat-icon-button color='accent'>
+              <i class="bi bi-whatsapp"></i>
+            </button>
+            <button (click)="compartilhar(versiculo)" mat-icon-button color='accent'>
+              <mat-icon>shared</mat-icon>
+            </button>
+          </div>
+        </mat-menu>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

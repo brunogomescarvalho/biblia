@@ -11,14 +11,18 @@ import { WhatsappService } from 'src/app/services/whatsapp/whatsapp.service';
 })
 export class CardFavoritosComponent {
 
-  constructor( private whatsService: WhatsappService){}
+  constructor(private whatsService: WhatsappService) { }
 
   @Input({ required: true }) favorito!: VersiculoViewModel
 
   @Output() onRemover = new EventEmitter<VersiculoViewModel>()
 
-  compartilhar(versiculo: VersiculoViewModel) {
-    this.whatsService.compartilhar(versiculo)
+  async compartilhar(versiculo: VersiculoViewModel) {
+    await this.whatsService.compartilhar(versiculo)
+  }
+
+  enviarPorWhatsapp(versiculo: VersiculoViewModel) {
+    this.whatsService.enviarPorWhatsApp(versiculo)
   }
 
   remover() {
