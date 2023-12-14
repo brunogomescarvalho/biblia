@@ -22,8 +22,12 @@ export class WhatsappService {
     return `https://wa.me/${data.numero}?text=${encodeURIComponent(data.msg)}`;
   }
 
+  private obterUrlParaVariosNumeros(data: WhatsappModel) {
+    return `https://wa.me/?text=${encodeURIComponent(data.msg)}`;
+  }
+
   private enviarPorWhatsApp(data: WhatsappModel, ehWeb = false): void {
-    let link = ehWeb ? this.obterWebLink(data) : this.obterDesktopLink(data);
+    let link = ehWeb ? this.obterWebLink(data) : this.obterUrlParaVariosNumeros(data);
     window.open(link, '_blank');
   }
 
@@ -68,10 +72,14 @@ export class WhatsappService {
     return regex.test(telefone);
   }
 
+  // compartilhar(versiculo: VersiculoViewModel) {
+  //   return this.dialog.open(WhatsappDialogComponent, {
+  //     data: versiculo,
+  //   });
+  // }
+
   compartilhar(versiculo: VersiculoViewModel) {
-    return this.dialog.open(WhatsappDialogComponent, {
-      data: versiculo,
-    });
+    this.enviarMensagem('', versiculo)
   }
 
   enviarLink(telefone: string, versiculo: VersiculoViewModel) {
@@ -87,6 +95,15 @@ export class WhatsappService {
 
     this.enviarPorWhatsApp(whatsapp);
   }
+
+  // enviarMensagem(telefone: string, versiculo: VersiculoViewModel) {
+  //   let capitulo = versiculo.chapter;
+  //   let verso = versiculo.number;
+
+  //   let whatsapp: WhatsappModel = {
+  //     msg: `Olá, gostaria de compartilhar um verso bíblico com você.\n\n${versiculo.text}\n\n${versiculo.book?.name} ${capitulo}:${verso}\n`,
+  //     numero: telefone,
+  //   };
 
   enviarMensagem(telefone: string, versiculo: VersiculoViewModel) {
     let capitulo = versiculo.chapter;
