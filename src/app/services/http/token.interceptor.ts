@@ -6,9 +6,13 @@ export const IncluirTokenInterceptor = (request: HttpRequest<unknown>, next: Htt
 
   const token = environment.tokenApi;
 
-  const requestClone = request.clone({
-    headers: request.headers.set('Authorization', `Bearer ${token}`),
-  })
+  let url = request.url.split('/')[2]
 
-  return next(requestClone);
+  if (url == "www.abibliadigital.com.br") {
+    request = request.clone({
+      headers: request.headers.set('Authorization', `Bearer ${token}`),
+    })
+  }
+
+  return next(request);
 }

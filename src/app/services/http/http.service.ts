@@ -41,4 +41,5 @@ export class ServicoHttp {
     return this.http.post<any>(`${this.endpoint}/verses/search`, palavra);
   }
 
+
 }
