@@ -2,8 +2,10 @@ import { Injectable, OnInit } from '@angular/core';
 import { Livro, VersiculoViewModel } from '../../models/models';
 import { ImagemDoDia } from '../http/imagem-do-dia.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LocalStorageService {
+
+  constructor() { }
 
   private nome: string = 'FavoritosDaBiblia'
   private cacheLivros: string = 'cachebiblia'
@@ -105,10 +107,15 @@ export class LocalStorageService {
 
     let imagem = JSON.parse(dados) as ImagemDoDia
 
-    if (new Date(imagem.date).getDate() + 1 != new Date().getDate())
-      return null
+    let dataAtual = new Date()
 
-    return imagem
+    if (new Date(imagem.date).getDate() + 1 == dataAtual.getDate())
+      return imagem
+
+    if (dataAtual.getHours() < 5)
+      return imagem
+
+    return null
 
   }
 

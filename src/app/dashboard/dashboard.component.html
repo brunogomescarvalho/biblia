@@ -40,7 +40,7 @@
           <h2>Imagem do Dia</h2>
           <mat-divider></mat-divider>
           <div *ngIf="this.imagemDoDia$|async as imagem">
-            <h3>{{imagem.title }} - {{imagem.date | date: 'dd/MM/YYYY'}}</h3>
+            <h3>{{imagem.title }}</h3>
             <figure class="figure" (click)="irParaImagem(imagem)">
               <img class="figure-img img-fluid rounded" [src]="imagem.url" [width]=alterarTamanhoImagem()>
               <figcaption class="figure-caption text-end"><small>{{imagem.copyright}}</small></figcaption>

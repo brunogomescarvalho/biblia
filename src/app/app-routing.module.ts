@@ -7,10 +7,13 @@ import { resolverFavoritos } from './favoritos/favoritos.routing';
 import { of } from 'rxjs';
 import { ServicoHttp } from './services/http/http.service';
 import { ImagemDoDiaService } from './services/http/imagem-do-dia.service';
+import { HttpClient } from '@angular/common/http';
+import { resolveLivros } from './livros/livros.routing';
 
-const obterImagemDoDia = () => {
+export const obterImagemDoDia = () => {
 
-  let localStorageService = inject(LocalStorageService)
+  let localStorageService = new LocalStorageService()
+
   let imagem = localStorageService.obterImagemDia()
 
   if (imagem)
@@ -22,20 +25,7 @@ const obterImagemDoDia = () => {
   return imagemDoDia
 }
 
-const obterLivros = async () => {
 
-  let localStorageService = inject(LocalStorageService)
-  let dados = await localStorageService.obterLivros();
-
-  if (dados)
-    return of(dados)
-
-  let livros = inject(ServicoHttp).ObterLivros()
-  livros.subscribe(x => localStorageService.salvarLivros(x))
-
-  return livros
-
-}
 
 
 const routes: Routes = [
@@ -47,7 +37,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    resolve: { favoritos: resolverFavoritos, imagemDoDia: obterImagemDoDia, livros: obterLivros }
+    resolve: { favoritos: resolverFavoritos,  livros: resolveLivros, imagemDoDia:obterImagemDoDia }
   },
   {
     path: 'versiculos',
@@ -84,4 +74,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {  }

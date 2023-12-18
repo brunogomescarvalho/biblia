@@ -54,6 +54,7 @@ export class DashboardComponent implements OnInit {
   async obterDados() {
     await this.obterFavoritos()
     this.obterSalmoDoDia()
+    this.obterLivros()
     this.obterImagemDoDia()
   }
 
@@ -61,15 +62,14 @@ export class DashboardComponent implements OnInit {
     this.favoritos = await this.route.snapshot.data['favoritos']
   }
 
-  obterImagemDoDia() {
+  obterLivros() {
     this.livrosIndexInicial = Math.floor(Math.random() * 59);
     this.livrosIndexFinal = this.livrosIndexInicial + 6;
+    this.livros = this.route.snapshot.data['livros']
+  }
 
+  obterImagemDoDia() {
     this.imagemDoDia$ = this.route.data.pipe(map(x => x['imagemDoDia']))
-
-    let livros = this.route.snapshot.data['livros'] as Observable<Livro[]>
-    livros.subscribe(x => this.livros = x)
-
   }
 
   obterSalmoDoDia() {
