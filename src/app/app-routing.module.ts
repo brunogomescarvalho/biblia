@@ -1,32 +1,26 @@
-import { LocalStorageService } from './services/localStorage/localStorage.service';
-import { NgModule, inject } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { of } from 'rxjs';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { resolverFavoritos } from './favoritos/favoritos.routing';
-import { of } from 'rxjs';
-import { ServicoHttp } from './services/http/http.service';
-import { ImagemDoDiaService } from './services/http/imagem-do-dia.service';
-import { HttpClient } from '@angular/common/http';
 import { resolveLivros } from './livros/livros.routing';
+import { ImagemDoDiaService } from './services/http/imagem-do-dia.service';
+import { LocalStorageService } from './services/localStorage/localStorage.service';
 
 export const obterImagemDoDia = () => {
+  let localStorageService = new LocalStorageService();
 
-  let localStorageService = new LocalStorageService()
+  let imagem = localStorageService.obterImagemDia();
 
-  let imagem = localStorageService.obterImagemDia()
+  if (imagem) return of(imagem);
 
-  if (imagem)
-    return of(imagem)
+  let imagemDoDia = inject(ImagemDoDiaService).obterImagemDoDia();
 
-  let imagemDoDia = inject(ImagemDoDiaService).obterImagemDoDia()
-  imagemDoDia.subscribe(x => localStorageService.salvarImagemDoDia(x))
+  imagemDoDia.subscribe((x) => localStorageService.salvarImagemDoDia(x));
 
-  return imagemDoDia
-}
-
-
-
+  return imagemDoDia;
+};
 
 const routes: Routes = [
   {
@@ -37,7 +31,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    resolve: { favoritos: resolverFavoritos,  livros: resolveLivros, imagemDoDia:obterImagemDoDia }
+    resolve: {
+      favoritos: resolverFavoritos,
+      livros: resolveLivros,
+      imagemDoDia: obterImagemDoDia,
+    },
   },
   {
     path: 'versiculos',
@@ -72,6 +70,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {  }
+export class AppRoutingModule {}

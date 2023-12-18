@@ -1,131 +1,123 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
+
 import { Livro, VersiculoViewModel } from '../../models/models';
 import { ImagemDoDia } from '../http/imagem-do-dia.service';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
+  constructor() {}
 
-  constructor() { }
-
-  private nome: string = 'FavoritosDaBiblia'
-  private cacheLivros: string = 'cachebiblia'
-  private cacheSalmo: string = 'salmoDoDia'
-  private imagemDoDia: string = 'imagemDoDiaBiblia'
+  private nome: string = 'FavoritosDaBiblia';
+  private cacheLivros: string = 'cachebiblia';
+  private cacheSalmo: string = 'salmoDoDia';
+  private imagemDoDia: string = 'imagemDoDiaBiblia';
 
   obterFavoritosOrdenado() {
-    let dados = localStorage.getItem(this.nome)
+    let dados = localStorage.getItem(this.nome);
 
-    return dados ? Array.from(JSON.parse(dados)).reverse() as VersiculoViewModel[] : []
+    return dados
+      ? (Array.from(JSON.parse(dados)).reverse() as VersiculoViewModel[])
+      : [];
   }
 
   obterFavoritos() {
-    let dados = localStorage.getItem(this.nome)
+    let dados = localStorage.getItem(this.nome);
 
-    return dados ? Array.from(JSON.parse(dados)) as VersiculoViewModel[] : []
+    return dados ? (Array.from(JSON.parse(dados)) as VersiculoViewModel[]) : [];
   }
 
   ehFavorito(verse: VersiculoViewModel) {
-    return this.obterFavoritosOrdenado().findIndex(x => x?.text == verse?.text) != -1
+    return (
+      this.obterFavoritosOrdenado().findIndex((x) => x?.text == verse?.text) !=
+      -1
+    );
   }
 
   salvarFavorito(verse: VersiculoViewModel): boolean {
+    let dados = this.obterFavoritos();
 
-    let dados = this.obterFavoritos()
+    let encontrado = dados.find((x) => x.text == verse.text);
 
-    let encontrado = dados.find(x => x.text == verse.text)
+    if (encontrado) return false;
 
-    if (encontrado)
-      return false
-
-    dados.push(verse)
-    localStorage.setItem(this.nome, JSON.stringify(dados))
-    return true
-
+    dados.push(verse);
+    localStorage.setItem(this.nome, JSON.stringify(dados));
+    return true;
   }
 
   remover(verse: VersiculoViewModel) {
-    let dados = this.obterFavoritos()
-    let index = dados.findIndex(x => x.text == verse.text)
-    dados.splice(index, 1)
-    localStorage.setItem(this.nome, JSON.stringify(dados))
+    let dados = this.obterFavoritos();
+    let index = dados.findIndex((x) => x.text == verse.text);
+    dados.splice(index, 1);
+    localStorage.setItem(this.nome, JSON.stringify(dados));
   }
 
-
-
   salvarLivros(dados: Livro[]) {
-    localStorage.setItem(this.cacheLivros, JSON.stringify(dados))
+    localStorage.setItem(this.cacheLivros, JSON.stringify(dados));
   }
 
   obterLivros() {
     let infos = localStorage.getItem(this.cacheLivros);
 
-    return infos ? JSON.parse(infos) : null
+    return infos ? JSON.parse(infos) : null;
   }
 
   salvarSalmoDoDia(verse: VersiculoViewModel) {
-
     let salmoDoDia = {
       salmo: verse,
-      data: new Date()
-    }
-    localStorage.setItem(this.cacheSalmo, JSON.stringify(salmoDoDia))
+      data: new Date(),
+    };
+    localStorage.setItem(this.cacheSalmo, JSON.stringify(salmoDoDia));
   }
 
   obterSalmo() {
     let salmo = localStorage.getItem(this.cacheSalmo);
 
-    if (salmo) {
-      let salmoObj = JSON.parse(salmo) as any
+    if (!salmo) return null;
 
-      const dataSalmo = new Date(salmoObj.data)
+    let salmoObj = JSON.parse(salmo) as any;
 
-      if (dataSalmo.getDate() != new Date().getDate())
-        return null
+    const dataSalmo = new Date(salmoObj.data);
 
-      return salmoObj.salmo
+    if (dataSalmo.getDate() == new Date().getDate()) return salmoObj.salmo;
 
-    }
-
-    return null
-
+    return null;
   }
 
   validarSalmo(salmo: VersiculoViewModel) {
-    let primeiraLetra = salmo.text![0]
+    let primeiraLetra = salmo.text![0];
 
-    let ultimaLetra = salmo.text![salmo.text?.length! - 1]
+    let ultimaLetra = salmo.text![salmo.text?.length! - 1];
 
-    return primeiraLetra == primeiraLetra.toUpperCase() && ultimaLetra == '.'
-
+    return primeiraLetra == primeiraLetra.toUpperCase() && ultimaLetra == '.';
   }
 
   obterImagemDia() {
-    let dados = localStorage.getItem(this.imagemDoDia)
+    let dados = localStorage.getItem(this.imagemDoDia);
 
-    if (!dados)
-      return null
+    if (!dados) return null;
 
-    let imagem = JSON.parse(dados) as ImagemDoDia
+    let imagem = JSON.parse(dados) as ImagemDoDia;
 
-    let dataAtual = new Date()
+    let dataAtual = new Date();
 
     if (new Date(imagem.date).getDate() + 1 == dataAtual.getDate())
-      return imagem
+      return imagem;
 
-    if (dataAtual.getHours() < 5)
-      return imagem
+    if (dataAtual.getHours() < 5) return imagem;
 
-    return null
-
+    return null;
   }
 
   salvarImagemDoDia(imagem: ImagemDoDia) {
-    localStorage.setItem(this.imagemDoDia, JSON.stringify(imagem))
+    localStorage.setItem(this.imagemDoDia, JSON.stringify(imagem));
   }
 
   getLocalStorageSizeInfo() {
-    const totalBytes = new TextEncoder().encode(JSON.stringify(localStorage)).length;
-    const maxSizeBytes = 5 * 1024 * 1024; // 5 MB é um valor comum, mas pode variar
+    const totalBytes = new TextEncoder().encode(
+      JSON.stringify(localStorage)
+    ).length;
+    const maxSizeBytes = 5 * 1024 * 1024;
 
     return {
       totalBytes,
@@ -133,5 +125,4 @@ export class LocalStorageService {
       usedPercentage: (totalBytes / maxSizeBytes) * 100,
     };
   }
-
 }

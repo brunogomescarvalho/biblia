@@ -1,5 +1,5 @@
 import { IMAGE_CONFIG, registerLocaleData } from '@angular/common';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
 import { APP_INITIALIZER, LOCALE_ID, NgModule } from '@angular/core';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
@@ -17,8 +17,6 @@ import { TemaService } from './services/tema/tema.service';
 import { SharedModule } from './shared/shared.module';
 import { ShellComponent } from './shell/shell.component';
 import { SubMenusComponent } from './shell/sub-menus/sub-menus.component';
-
-import {  HttpClientModule } from '@angular/common/http';
 
 
 

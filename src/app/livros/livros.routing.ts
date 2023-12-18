@@ -1,20 +1,29 @@
 import { inject } from '@angular/core';
-import { ListarLivrosComponent } from './listar-livros/listar-livros.component';
-import { Routes, RouterModule } from '@angular/router';
-import { ServicoHttp } from '../services/http/http.service';
-import { PesquisarLivrosComponent } from './pesquisar-livros/pesquisar-livros.component';
+import { RouterModule, Routes } from '@angular/router';
 import { of } from 'rxjs';
+
+import { ServicoHttp } from '../services/http/http.service';
 import { LocalStorageService } from '../services/localStorage/localStorage.service';
+import { ListarLivrosComponent } from './listar-livros/listar-livros.component';
+import { PesquisarLivrosComponent } from './pesquisar-livros/pesquisar-livros.component';
 
 export const resolveLivros = () => {
 
-  let cache = inject(LocalStorageService).obterLivros()
+  let serviceStorage = inject(LocalStorageService)
+
+  let cache = serviceStorage.obterLivros()
 
   if (cache)
     return of(cache)
 
-  return inject(ServicoHttp).ObterLivros()
+  let livros = inject(ServicoHttp).ObterLivros();
+
+  livros.subscribe(x => serviceStorage.salvarLivros(x))
+
+  return livros
 }
+
+
 const routes: Routes = [
   {
     path: "",
