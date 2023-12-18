@@ -33,15 +33,15 @@
 
       <div class="row">
         <div class="col mb-4">
-          <h2>Imagem do Dia</h2>
+          <h2 class="text-center mb-2">Imagem do Dia</h2>
           <mat-divider></mat-divider>
           <div *ngIf="this.imagemDoDia$|async as imagem">
-            <h3>{{imagem.title }}</h3>
+            <h5 class=" pt-2 mb-0 text-center">{{imagem.title }}</h5>
             <figure class="figure" (click)="irParaImagem(imagem)">
-              <img class="figure-img img-fluid rounded" [src]="imagem.url" [width]=alterarTamanhoImagem()>
+              <img class=" mt-0 figure-img img-fluid rounded" [src]="imagem.url" [width]=alterarTamanhoImagem()>
               <figcaption class="figure-caption text-end"><small>{{imagem.copyright}}</small></figcaption>
             </figure>
-            <p class="mt-3">{{imagem.explanation }}</p>
+            <p class="mt-3 justi">{{imagem.explanation }}</p>
             <mat-divider></mat-divider>
           </div>
         </div>
