@@ -1,5 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Livro, VersiculoViewModel } from '../../models/models';
+import { ImagemDoDia } from '../http/imagem-do-dia.service';
 
 @Injectable()
 export class LocalStorageService {
@@ -7,6 +8,7 @@ export class LocalStorageService {
   private nome: string = 'FavoritosDaBiblia'
   private cacheLivros: string = 'cachebiblia'
   private cacheSalmo: string = 'salmoDoDia'
+  private imagemDoDia: string = 'imagemDoDiaBiblia'
 
   obterFavoritosOrdenado() {
     let dados = localStorage.getItem(this.nome)
@@ -93,6 +95,25 @@ export class LocalStorageService {
 
     return primeiraLetra == primeiraLetra.toUpperCase() && ultimaLetra == '.'
 
+  }
+
+  obterImagemDia() {
+    let dados = localStorage.getItem(this.imagemDoDia)
+
+    if (!dados)
+      return null
+
+    let imagem = JSON.parse(dados) as ImagemDoDia
+
+    if (new Date(imagem.date).getDate() + 1 != new Date().getDate())
+      return null
+
+    return imagem
+
+  }
+
+  salvarImagemDoDia(imagem: ImagemDoDia) {
+    localStorage.setItem(this.imagemDoDia, JSON.stringify(imagem))
   }
 
   getLocalStorageSizeInfo() {

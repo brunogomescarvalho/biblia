@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, take } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 
 import { Livro, VersiculoViewModel } from '../models/models';
 import { LocalStorageService } from '../services/localStorage/localStorage.service';
@@ -17,16 +17,12 @@ import { ImagemDoDia, ImagemDoDiaService } from '../services/http/imagem-do-dia.
 })
 export class DashboardComponent implements OnInit {
   imagemDash?: string;
-
   favoritos: VersiculoViewModel[] = [];
-  livros!: Livro[];
+  livros?: Livro[];
   salmo?: VersiculoViewModel;
-
   livrosIndexInicial!: number;
   livrosIndexFinal!: number;
-
   imagemDoDia$!: Observable<ImagemDoDia>
-
   ehFavorito = false
 
   constructor(
@@ -46,34 +42,34 @@ export class DashboardComponent implements OnInit {
       this.imagemDash = this.imagemService.obterImagem(x, 'dash');
     });
 
-    this.obterDados();
-    this.obterSalmoDoDia();
-
-    this.imagemDoDia$ = this.serviceNasa.obterImagemDoDia()
+    this.obterDados()
   }
 
+
   alterarTamanhoImagem() {
-    if (window.innerWidth < 650)
-      return window.innerWidth - 80
-    else
-      return 520
+    return window.innerWidth < 650 ? window.innerWidth - 80 : 520
+
   }
 
   async obterDados() {
+    await this.obterFavoritos()
+    this.obterSalmoDoDia()
+    this.obterImagemDoDia()
+  }
+
+  async obterFavoritos() {
+    this.favoritos = await this.route.snapshot.data['favoritos']
+  }
+
+  obterImagemDoDia() {
     this.livrosIndexInicial = Math.floor(Math.random() * 59);
     this.livrosIndexFinal = this.livrosIndexInicial + 6;
 
-    this.favoritos = this.route.snapshot.data['favoritos']
+    this.imagemDoDia$ = this.route.data.pipe(map(x => x['imagemDoDia']))
 
-    let dados = await this.localStorageService.obterLivros();
+    let livros = this.route.snapshot.data['livros'] as Observable<Livro[]>
+    livros.subscribe(x => this.livros = x)
 
-    if (dados) this.livros = dados as Livro[];
-    else {
-      this.servicehttp.ObterLivros().subscribe((x) => {
-        this.livros = x;
-        this.localStorageService.salvarLivros(this.livros);
-      });
-    }
   }
 
   obterSalmoDoDia() {
@@ -134,7 +130,7 @@ export class DashboardComponent implements OnInit {
     await this.serviceWhats.compartilhar(salmo)
   }
 
-  irParaImagem(imagem:ImagemDoDia){
-    window.open(imagem.hdurl )
+  irParaImagem(imagem: ImagemDoDia) {
+    window.open(imagem.hdurl)
   }
 }
