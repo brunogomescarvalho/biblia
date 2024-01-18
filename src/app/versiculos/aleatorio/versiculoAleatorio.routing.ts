@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: "livro",
     component: AleatorioPorLivroComponent,
-    resolve:{resolveLivros}
+    resolve: { livros: resolveLivros }
   }
 ];
 
